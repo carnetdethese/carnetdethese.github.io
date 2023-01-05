@@ -10,7 +10,6 @@ theme = "paper"
   color = 'linen'                   # linen, wheat, gray, light
 
   # header social icons
-  instagram = '_alexmimms'   # instagram.com/YOUR_INSTAGRAM_ID
   linkedin = 'in/alexandre-mimms'
   rss = true                        # show rss icon
 
