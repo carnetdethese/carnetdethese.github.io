@@ -1,4 +1,4 @@
-baseURL = 'https://amimms.github.io/'
+baseURL = 'https://carnetdethese.github.io/'
 languageCode = 'fr'
 title = 'Carnet de thèse'
 
@@ -10,14 +10,15 @@ theme = "paper"
   color = 'linen'                   # linen, wheat, gray, light
 
   # header social icons
-  linkedin = 'in/alexandre-mimms'
   rss = true                        # show rss icon
 
   # home page profile
   avatar = ''
-  name = 'Alexandre Mimms'
-  bio = 'Doctorant contractuel en droit public - Université Paris II Panthéon Assas'
-
+  name = 'Carnet de thèse'
+  bio = 'Chroniques de recherches'
+  
+  
+  
   # misc
   disableHLJS = true                # disable requesting highlight.js
   monoDarkIcon = true               # show monochrome dark mode icon
