@@ -2,8 +2,10 @@
 
 title: "Un carnet de thèse : pourquoi ?"
 date: 2023-01-05T18:58:03+01:00
+draft: true
 keywords:
 - présentation
+
 
 ---
 
