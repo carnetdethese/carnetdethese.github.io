@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Carnet de thèse</title>
-    <link>http://example.org/</link>
-    <description>Recent content on Carnet de thèse</description>
+    <title>Page d&#39;accueil on Carnet de thèse</title>
+    <link>https://amimms.github.io/</link>
+    <description>Recent content in Page d&#39;accueil on Carnet de thèse</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>fr</language><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>fr</language>
+    <lastBuildDate>Thu, 05 Jan 2023 22:58:46 +0100</lastBuildDate><atom:link href="https://amimms.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A propos</title>
+      <link>https://amimms.github.io/about/</link>
+      <pubDate>Thu, 05 Jan 2023 20:50:19 +0100</pubDate>
+      
+      <guid>https://amimms.github.io/about/</guid>
+      <description>LinkedIn : https://www.linkedin.com/in/alexandre-mimms</description>
+    </item>
+    
   </channel>
 </rss>

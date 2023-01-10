@@ -16,7 +16,7 @@ theme = "paper"
   # home page profile
   avatar = ''
   name = 'Alexandre Mimms'
-  bio = 'Doctorant contractuel - Université Paris II Panthéon Assas'
+  bio = 'Doctorant contractuel en droit public - Université Paris II Panthéon Assas'
 
   # misc
   disableHLJS = true                # disable requesting highlight.js

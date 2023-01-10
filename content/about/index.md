@@ -1,7 +1,14 @@
 ---
 title: "A propos"
 date: 2023-01-05T20:50:19+01:00
-draft: true
+draft: false
+menu: main
+
 ---
 
-Si le hasard vous a conduit ici, il me faut décliner mon identité.
+LinkedIn : https://www.linkedin.com/in/alexandre-mimms
+
+
+
+
+
