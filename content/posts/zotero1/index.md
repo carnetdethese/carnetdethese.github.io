@@ -53,7 +53,7 @@ Ici encore, plusieurs possibilités :
 		- ![](Pasted%20image%2020230116095254.png)
 - **LaTeX !** Enfin, pour les plus *geeks*, sachez qu'il possible d'utiliser Zotero dans un environnement de travail LaTeX. Nous reviendrons plus longuement dessus dans un prochain billet.
 
-> [!tip] Astuce : sélectionner plusieurs entrées
+> ### ⚡️ Astuce : sélectionner plusieurs entrées
 > Les raccourcis systèmes classiques fonctionnent ici : Ctrl+Clic gauche pour sélectionner des entrées qui ne se suivent pas ; Shift+Clic gauche pour sélectioner toutes les entrées se trouvant entre une entrée sélectionnée et celle sur laquelle on applique le raccourci.
 
 ### Conclusion partielle
@@ -77,7 +77,7 @@ Zotero permet le changement de la forme de citation, ce qui le rend particuliér
 Nous présenterons ici la procédure pour intégrer le format des P.U. de Nanterre.
 
 
-> [!important] Important
+> ### ❗️ Important
 > Cette étape requiert une connexion internet.
 
 
@@ -97,8 +97,7 @@ Nous présenterons ici la procédure pour intégrer le format des P.U. de Nanter
 
 Et voilà ! Maintenant, vous pouvez fermer la page et commencer à citer autant que vous le souhaitez dans le bon format. Et cette procédure n'étant à faire qu'une seule et unique fois, vous n'avez plus à consulter les documents de référence pour vérifier si le lieu doit être indiqué avant l'année ou l'édition, ou si...
 
-
-> [!warning] Attention
+> ### ⚠️ Attention
 > Parfois, vous pourrez trouver dans les citations copiées deux indications étranges : `s.l` / `s.n`. Cela arrive lorsque le lieu (s.l) ou l'éditeur (s.n) ne sont pas indiqués. Pour régler le problème, vous pouvez, au choix, entrez les informations, ou supprimer manuellement la mention. Il existe une solution qui nécessite de bidouiller un peu le code source, mais cela sort du cadre de cette introduction. 
 
 

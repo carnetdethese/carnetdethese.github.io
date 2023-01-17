@@ -77,7 +77,7 @@ Zotero permet le changement de la forme de citation, ce qui le rend particuliér
 Nous présenterons ici la procédure pour intégrer le format des P.U. de Nanterre.
 
 
-> [!important] Important
+> ### ❗️ Important
 > Cette étape requiert une connexion internet.
 
 
@@ -97,8 +97,7 @@ Nous présenterons ici la procédure pour intégrer le format des P.U. de Nanter
 
 Et voilà ! Maintenant, vous pouvez fermer la page et commencer à citer autant que vous le souhaitez dans le bon format. Et cette procédure n'étant à faire qu'une seule et unique fois, vous n'avez plus à consulter les documents de référence pour vérifier si le lieu doit être indiqué avant l'année ou l'édition, ou si...
 
-
-> [!warning] Attention
+> ### ⚠️ Attention
 > Parfois, vous pourrez trouver dans les citations copiées deux indications étranges : `s.l` / `s.n`. Cela arrive lorsque le lieu (s.l) ou l'éditeur (s.n) ne sont pas indiqués. Pour régler le problème, vous pouvez, au choix, entrez les informations, ou supprimer manuellement la mention. Il existe une solution qui nécessite de bidouiller un peu le code source, mais cela sort du cadre de cette introduction. 
 
 
@@ -115,7 +114,7 @@ Pour les juristes, il peut être intéressant de sélectionner la bibliothèque 
 	1. ![](Pasted%20image%2020230116102946.png)
 
 Voilà ! Maintenant votre catalogue de référence sera celui de votre bibliothèque préférée. Ce changement vous permet aussi d'obtenir la notice bibliographique de la bibliothèque depuis Zotero, en cliquant sur la petite flèche se trouvant au dessus du panneau de droite contenant les informations des entrées : 
-![](Pasted%20image%2020230116103156.png|200]]
+![](Pasted%20image%2020230116103156.png)
 
 
 J'espère que cette petite introduction vous a plu ! N'hésitez pas à me contacter si vous avez besoin d'éclaircissements !
