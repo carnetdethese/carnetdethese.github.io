@@ -9,13 +9,11 @@ menu: main
 
 ## Qui écrit ici ?
 
-Pour le moment, je suis seul aux commandes. Mais, qui suis-je ? 
-
 Je m'appelle [Alexandre Mimms](https://www.linkedin.com/in/alexandre-mimms) et je suis actuellement doctorant en droit public à l'Université Paris 2 - Panthéon Assas. Par prévention, sachez que **l'Université n’entend donner aucune approbation ni improbation aux opinions émises sur ce blog ; ces opinions doivent être considérées comme propres à leur auteur** - qu'il s'agisse de moi ou d'un·e invité·e.
 
 Au fur et à mesure, je souhaiterais inviter des camarades à participer à l'activité du blog, afin de construire un récit croisé de l'expérience de thèse, et plus largement de recherche. 
 
-## Pourquoi avoir ouvert un blog ?
+## Pourquoi avoir créé un blog ?
 
 L'idée principale ayant animé la création de ce blog est l'envie de partager l'expérience de la thèse. La vie d'un·e doctorant·e demeure assez obscure pour beaucoup. Que faisons-nous ? Comment s'organise nos journées ? Comment appréhendons nous nos sources ? Quels sont les moments difficiles & ceux qui nous font du bien ? etc.
 
