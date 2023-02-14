@@ -2,19 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fil d&#39;actualité on Carnet de thèse</title>
-    <link>https://amimms.github.io/posts/</link>
+    <link>https://carnetdethese.github.io/posts/</link>
     <description>Recent content in Fil d&#39;actualité on Carnet de thèse</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 05 Jan 2023 22:27:18 +0100</lastBuildDate><atom:link href="https://amimms.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Jan 2023 22:27:18 +0100</lastBuildDate><atom:link href="https://carnetdethese.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Un carnet de thèse : pourquoi ?</title>
-      <link>https://amimms.github.io/posts/premier-billet/</link>
-      <pubDate>Thu, 05 Jan 2023 18:58:03 +0100</pubDate>
+      <title>Les outils informatiques au service de la recherche #1</title>
+      <link>https://carnetdethese.github.io/posts/outils-info-1.md/</link>
+      <pubDate>Mon, 16 Jan 2023 19:16:40 +0100</pubDate>
       
-      <guid>https://amimms.github.io/posts/premier-billet/</guid>
-      <description>Pourquoi ? Plusieurs raisons ont motivé la décision de créer ce blog :
-Si je souhaite poursuivre une carrière académique, c&amp;rsquo;est avant tout parce que je considère la connaissance comme un bien fondamental devant être largement partagée. Cela passe bien évidemment par l&amp;rsquo;enseignement, corollaire de la recherche, mais aussi par d&amp;rsquo;autres formes de partage, comme l&amp;rsquo;écrit ; Tenir un blog, c&amp;rsquo;est s&amp;rsquo;astreindre à l&amp;rsquo;écriture régulière, à la réflexion et à la constante réévaluation de son travail.</description>
+      <guid>https://carnetdethese.github.io/posts/outils-info-1.md/</guid>
+      <description>La première série de billet publiée sur ce blog aura pour objet la présentation de différents outils informatiques utiles à la recherche en droit et en sciences humaines. Ici, nous allons présenter Zotero, un gestionnaire de bibliographie extrêmement puissant et polyvalent. Ses possibilités sont si importantes que plusieurs billets seront nécessaires pour traiter d&amp;rsquo;un maximum de ses capacités. Pour l&amp;rsquo;heure, voyons ce qu&amp;rsquo;il est, ce dont il est capable de faire, et comment il peut nous aider à rendre notre travail plus efficace&amp;hellip;</description>
     </item>
     
   </channel>
