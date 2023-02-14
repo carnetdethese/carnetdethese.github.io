@@ -48,7 +48,7 @@ Il existe une longue histoire du travail scientifique et de recherche. Je n'ai p
 
 ## Le deuxième cerveau : externalisation
 
-Le concept de *deuxième cerveau* (*second brain*) semble aujourd'hui attribué à un auteur très présent sur les réseaux, Tiago Forte, mais l'idée fondatrice derrière l'expression est le suivante : *externaliser les connaissances afin de se laisser le maximum d'espace mental pour la réflexion, la conceptualisation et la mise en contexte*.
+Le concept de *deuxième cerveau* (*second brain*) semble aujourd'hui attribué à un auteur très présent sur les réseaux, Tiago Forte, mais l'idée fondatrice derrière l'expression est la suivante : *externaliser les connaissances afin de se laisser le maximum d'espace mental pour la réflexion, la conceptualisation et la mise en contexte*.
 
 Il existe de nombreuses manières d'accomplir cela. Niklas Luhmann, par exemple, a développé un système appelé *Zettelkasten* (*boîte à idées*) reposant sur deux idées clefs : *l'atomicité* des notes et le *lien*. D'autres, à sa suite, ont développé d'autres idées (*evergreen notes* d'Andy Matuschak, le *digital garden*, le système *PARA* etc.) qui reprennent le même noyau pour s'adapter aux besoins de chacun [^2].
 
