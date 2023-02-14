@@ -40,7 +40,7 @@ Pour commencer, j'ai dressé la liste des tâches que j'étais améné à accomp
 - **Sources et références** : tâche essentielle, sans laquelle la lecture tourne à vide. Elle se caractérise par un fort taux de décisions, par de la méthode stricte et un peu de hasard ;
 - **Réflexions et prise de recul** : tâche qui accompagne l'écriture -- "j'écris, donc je pense". La fonction de cette tâche est de trouver les liens, les connexions entre ce qu'on lit et ce qu'on pense, ce qu'on pense et ce qu'on lit, ce qu'on lit et ce qu'on lit... Bref, de trouver *la cohérence dans l'incohérent*.
 
-Cette liste n'est évidement pas exhaustive ni même figée -- je serai heureux de lire un point de vue contraire pour l'amender et / ou la préciser.  
+Cette liste n'est évidement pas exhaustive ni même figée -- je serais heureux de lire un point de vue contraire pour l'amender et / ou la préciser.  
 
 De cette présentation sommaire du processus de recherche naît donc la question suivante : *comment rendre efficace et cohérent ce travail au quotidien ?*
 
