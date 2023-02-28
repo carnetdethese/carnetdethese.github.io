@@ -1,5 +1,5 @@
 ---
-title: "Mardown Simplicite"
+title: "Markdown ou l'appel de la simplicité"
 date: 2023-02-28T10:47:42+01:00
 draft: false
 ---

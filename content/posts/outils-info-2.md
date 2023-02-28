@@ -1,5 +1,5 @@
 ---
-title: "Les outils informatiques au service de la recherche #2 - L'activité matérielle"
+title: "L'activité matérielle de la recherche"
 date: 2023-02-14T18:57:31+01:00
 draft: false
 ---
