@@ -5,9 +5,9 @@ draft: false
 ---
 
 
-Microsoft Word et LibreOffice ont plusieurs qualités qui en font les outils de prédilection pour écrire. Ils sont bien conçus, polyvalent, esthétiquement plaisant (vrai pour Word, moyennement pour LO, je le reconnais), et surtout, ils font très bien ce qu'on attend d'eux : construire des documents écrits qui peuvent être partagés sans honte.
+Microsoft Word et LibreOffice ont plusieurs qualités qui en font les outils de prédilection pour écrire. Ils sont bien conçus, polyvalents, esthétiquement plaisants (vrai pour Word, moyennement pour LO, je le reconnais), et surtout, ils font très bien ce qu'on attend d'eux : construire des documents écrits qui peuvent être partagés sans honte.
 
-Le problème, c'est que... voilà : ils sont lourds, produisent des documents qui deviennent difficilement gérables passés un certain nombre de pages, sont dans un format qui est souvent difficilement convertible et ils conduisent à une forte procrastination -- j'avais souvent l'impression de passer plus de temps à *mettre en forme* qu'à écrire.
+Le problème, c'est que... voilà : ils sont lourds, produisent des documents qui deviennent difficilement gérables passé un certain nombre de pages, sont dans un format qui est souvent difficilement convertible et ils conduisent à une forte procrastination -- j'avais souvent l'impression de passer plus de temps à *mettre en forme* qu'à écrire.
 
 Et pour la prise de note, de fiches de lecture, de réflexions, etc., il me semblait y avoir trop de *friction* pour utiliser ces outils. Après tout, ce sont des logiciels de *traitement de texte*. Ils servent à *traiter* du texte. Pas à prendre des notes.
 
@@ -32,7 +32,7 @@ Une image valant mille mots, voilà à quoi ressemble ce texte écrit en Markdow
 
 Comme vous pouvez le voir :
 - le titre est marqué par la balise `#` (le nombre de dièses déterminant la *profondeur* du titre - titre principal, chapitre, section, paragraphe, etc.) ;
-- les éléments en gras et en italiques se distinguent grâce à une `*̀` (une étoile avant et après pour l'italique, deux pour le gras). On peut aussi utiliser le tiret du 8 (`_`) pour accomplir le même effet ;
+- les éléments en gras et en italique se distinguent grâce à une `*` (une étoile avant et après pour l'italique, deux pour le gras). On peut aussi utiliser le tiret du 8 (`_`) pour accomplir le même effet ;
 - les liens `hypertexte` sont créés ainsi : `[Titre du lien](lien -- https, wiki etc.)`.
 
 Il existe un certain nombre de balises permettant d'accomplir un ensemble d'objectifs très simplement. Cela permet ainsi de ne pas se préoccuper de la mise en forme et de se laisser aller pleinement à l'écriture, à la réflexion. Pour une vue d'ensemble des balises, voilà un lien utile -- en attendant un article sur ce blog : [Les principales balises Markdown](https://www.leppf.com/site/spip.php?article154). 
@@ -68,13 +68,17 @@ Dans le cadre d'un processus de recherche et de travail scientifique, MD s'intè
 
 ## Les outils
  
-Vous devez sans doute être en train de hausser les sourcils vous demandant quelle idée étrange m'est passée par la tête, plus haut, pour vous proposer d'écrire vos notes dans le bloc note Windows. En réalité, il existe aujourd'hui pléthores d'outils permettant de travailler avec MD. La plupart des programmes que je vais mentionner offrent un espace d'écriture et un panneau de visualisation instantanée -- une sorte d'interpréteur, qui va transformer automatiquement le texte en produit fini.
+Vous devez sans doute être en train de hausser les sourcils vous demandant quelle idée étrange m'est passée par la tête, plus haut, pour vous proposer d'écrire vos notes dans le bloc note Windows. En réalité, il existe aujourd'hui pléthore d'outils permettant de travailler avec MD. La plupart des programmes que je vais mentionner offrent un espace d'écriture et un panneau de visualisation instantanée -- une sorte d'interpréteur, qui va transformer automatiquement le texte en produit fini.
 
 Pour ma part, j'ai longtemps utilisé [Ghostwriter](https://ghostwriter.kde.org/), qui allie simplicité et fonctionnalité. Il est disponible sur Windows, Mac et Linux. [Marktext](https://github.com/marktext/marktext), qui est aussi open-source, est très intéressant. Plein d'autres solutions sont disponibles, comme [Typora](https://typora.io/) qui semble être aujourd'hui un peu la Roll's des éditeurs MD, mais qui demande une contribution de 15 euros. 
 
 Actuellement, j'utilise [Obsidian](https://obsidian.md/) qui est bien plus qu'un éditeur MD, mais qui fonctionne sur le même principe.
 
-https://hashify.me/
+Si vous souhaitez d'abord essayer le concept, [Hashify](https://hashify.me/) vous permet de vous familiariser avec la syntaxe et d'essayer en temps réel le format et le rendu. 
 
-Les fichiers au format Markdown (en .md ou .markdown) peuvent être convertis dans tout autre type de format grâce à l'utilitaire open-source Pandoc
+Les fichiers au format Markdown (en .md ou .markdown) peuvent être convertis, si besoin est, dans tout autre type de format grâce à l'utilitaire open-source [Pandoc](https://pandoc.org/). 
+
+Voilà pour aujourd'hui !
+
+A.M.
 

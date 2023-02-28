@@ -61,5 +61,7 @@ Je m'arrête ici pour aujourd'hui. Le prochain billet présentera un outil fort 
 
 N'hésitez pas à me [contacter](mailto:alexandre.mimms@u-paris2.fr) pour échanger sur le sujet ! 
 
+A.M.
+
 [^1]: Je renvoie, dans l'attente d'une présentation plus longue et pertinente de ce sujet, vers l'idée de *[Personal Information Management](https://en.wikipedia.org/wiki/Personal_information_management)*. 
 [^2]: Il est facile de se perdre dans le vocabulaire et la foultitude de termes sur le sujet. Vous pouvez consulter ce billet qui reprend les termes principaux pour vous familiariser avec : https://medium.com/@raysims/a-personal-knowledge-management-glossary-6037d775f87b

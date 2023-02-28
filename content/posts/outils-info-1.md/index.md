@@ -117,5 +117,5 @@ Voilà ! Maintenant votre catalogue de référence sera celui de votre biblioth�
 
 
 J'espère que cette petite introduction vous a plu ! N'hésitez pas à me [contacter]({{< ref "about/index.md" >}}) si vous avez besoin d'éclaircissements. 
-
+A.M.
 
