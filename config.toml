@@ -3,7 +3,7 @@ languageCode = 'fr'
 title = 'Carnet de thèse'
 
 theme = "paper"
-DisqusShortname = 'hurjingan'
+DisqusShortname = 'carnetdethese'
 
 
 [params]
