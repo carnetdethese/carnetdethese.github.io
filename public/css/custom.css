@@ -1,0 +1,6 @@
+hr {
+  width: 20%;
+  border-style: dotted none none;
+  border-width: 20px;
+  border-color: red;
+}

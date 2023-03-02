@@ -1,7 +1,8 @@
 ---
-title: "L'activité matérielle de la recherche"
+title: "L'activité matérielle de la recherche - réflexions"
 date: 2023-02-14T18:57:31+01:00
 draft: false
+authors: ["Alexandre"]
 ---
 
 Ce deuxième billet relatif aux outils numériques présente quelques interrogations au sujet de l'*activité matérielle* de la recherche -- j'entends par là le processus par lequel s'opère la récolte, la classification, le traitement et la restitution des informations.

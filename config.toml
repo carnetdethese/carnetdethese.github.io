@@ -22,3 +22,5 @@ theme = "paper"
   # misc
   disableHLJS = true                # disable requesting highlight.js
   monoDarkIcon = true               # show monochrome dark mode icon
+  
+  custom_css = ["css/custom.css"]

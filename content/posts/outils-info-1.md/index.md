@@ -2,6 +2,7 @@
 title: "Zotero #1"
 date: 2023-01-16T19:16:40+01:00
 draft: false
+authors: ["Alexandre"]
 ---
 
 La première série de billets publiée sur ce blog aura pour objet la présentation de différents outils informatiques utiles à la recherche en droit et en sciences humaines. Ici, nous allons présenter *Zotero*, un gestionnaire de bibliographie extrêmement puissant et polyvalent. Ses possibilités sont si importantes que plusieurs billets seront nécessaires pour traiter d'un maximum de ses capacités. Pour l'heure, voyons ce qu'il est, ce dont il est capable de faire, et comment il peut nous aider à rendre notre travail plus efficace...
