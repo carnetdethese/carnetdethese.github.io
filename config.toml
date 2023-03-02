@@ -3,6 +3,7 @@ languageCode = 'fr'
 title = 'Carnet de thèse'
 
 theme = "paper"
+DisqusShortname = 'hurjingan'
 
 
 [params]
@@ -23,4 +24,5 @@ theme = "paper"
   disableHLJS = true                # disable requesting highlight.js
   monoDarkIcon = true               # show monochrome dark mode icon
   
+ 
   custom_css = ["css/custom.css"]
