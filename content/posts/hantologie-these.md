@@ -5,7 +5,7 @@ draft: false
 authors: ["Renan"]
 ---
 
->Haunting, then, can be construed as a failed mourning. It is about refusing to give up the ghost or – and this can sometimes amount to the same thing – the refusal of the ghost to give up on us. The spectre will not allow us to settle into/for the mediocre satisfactions one can glean in a world governed by capitalist realism. » 
+>Haunting, then, can be construed as a failed mourning. It is about refusing to give up the ghost or – and this can sometimes amount to the same thing – the refusal of the ghost to give up on us. The spectre will not allow us to settle into/for the mediocre satisfactions one can glean in a world governed by capitalist realism.
 >
 > M. FISCHER, Ghosts of my Life
 
