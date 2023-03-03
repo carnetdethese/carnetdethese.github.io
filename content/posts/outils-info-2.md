@@ -60,8 +60,6 @@ Il existe de nombreuses manières d'accomplir cela. Niklas Luhmann, par exemple,
 
 Je m'arrête ici pour aujourd'hui. Le prochain billet présentera un outil fort utile à la mise en place de ces éléments : *ObsidianMD*. 
 
-N'hésitez pas à me [contacter](mailto:alexandre.mimms@u-paris2.fr) pour échanger sur le sujet ! 
-
 A.M.
 
 [^1]: Je renvoie, dans l'attente d'une présentation plus longue et pertinente de ce sujet, vers l'idée de *[Personal Information Management](https://en.wikipedia.org/wiki/Personal_information_management)*. 
