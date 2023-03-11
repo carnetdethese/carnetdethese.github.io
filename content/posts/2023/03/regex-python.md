@@ -1,5 +1,5 @@
 ---
-title: "Python & Regex -- application pratique"
+title: "Python & Regex - application pratique"
 date: 2023-03-11T11:20:25+01:00
 draft: false
 author: ["Alexandre"]
