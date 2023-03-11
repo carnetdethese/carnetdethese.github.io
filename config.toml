@@ -4,7 +4,7 @@ title = 'Carnet de thèse'
 
 theme = "paper"
 DisqusShortname = 'carnetdethese'
-
+enableEmoji = true
 
 [params]
   # color style

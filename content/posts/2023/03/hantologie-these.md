@@ -5,13 +5,13 @@ draft: false
 authors: ["Renan"]
 ---
 
->Haunting, then, can be construed as a failed mourning. It is about refusing to give up the ghost or – and this can sometimes amount to the same thing – the refusal of the ghost to give up on us. The spectre will not allow us to settle into/for the mediocre satisfactions one can glean in a world governed by capitalist realism.
+> « Haunting, then, can be construed as a failed mourning. It is about refusing to give up the ghost or – and this can sometimes amount to the same thing – the refusal of the ghost to give up on us. The spectre will not allow us to settle into/for the mediocre satisfactions one can glean in a world governed by capitalist realism. »
 >
-> M. FISCHER, Ghosts of my Life
+> M. Fischer, *Ghosts of my Life*
 
 Dans son recueil d’essais *Ghosts of my life* (Zero Books, 2014), le philosophe britannique Mark Fischer notait l’étymologie ambivalente du terme « hanter » en langue anglaise :
 
->Le mot 'hanter' (*haunt*) et toutes ses dérivations est peut-être le mot anglais le plus proche de l’allemand 'unheimlich', dont les connotations polysémiques et étymologiques font écho à ce qu’en a révélé de façon si assidue et reconnue, Freud, dans son essai 'L'Inquiétante étrangeté' ». De la même manière que l’usage allemand autorise le familier (*das Heimliche*) à se changer en son opposé, l’inquiétant (*das Unheimliche*), 'hanter' signifie à la fois lieu de résidence, la scène domestique et ce qui l’envahit et le trouble.
+> « Le mot 'hanter' (*haunt*) et toutes ses dérivations est peut-être le mot anglais le plus proche de l’allemand 'unheimlich', dont les connotations polysémiques et étymologiques font écho à ce qu’en a révélé de façon si assidue et reconnue, Freud, dans son essai 'L'Inquiétante étrangeté' ». De la même manière que l’usage allemand autorise le familier (*das Heimliche*) à se changer en son opposé, l’inquiétant (*das Unheimliche*), 'hanter' signifie à la fois lieu de résidence, la scène domestique et ce qui l’envahit et le trouble. »
 
 L’observation peut être transposée au français. Alain Rey, dans son *Dictionnaire historique de la langue française*, nous indique que hanter, « représente, d'abord en Normandie, un emprunt (XIIe s.) à l'ancien scandinave *heimta* « conduire à la maison », dérivé de heim « maison » ». Il renvoie tout d’abord, et jusqu’au XVIIIe siècle, l’action de fréquenter régulièrement un lieu, toutefois cet usage vieillit et subit au XIXe siècle, l’influence de l’anglais « par l'intermédiaire des romans fantastiques », influence d’autant plus facilitée par son origine lointaine dans l'ancien français et le normand : *hanté* « fréquenté par les spectres », hant « fantôme ».
 
