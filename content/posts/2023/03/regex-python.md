@@ -2,7 +2,7 @@
 title: "Python & Regex - application pratique"
 date: 2023-03-11T11:20:25+01:00
 draft: false
-author: ["Alexandre"]
+authors: ["Alexandre"]
 ---
 
 Pendant un an, mes fiches de lecture étaient organisées sous forme de tableau Markdown, comme celui-ci :
