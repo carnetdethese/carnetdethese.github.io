@@ -43,7 +43,7 @@ Chaque point représente une note ; plus le point est gros, plus il concentre de
 
 #### Modularité 
 
-*Obsidian* excelle par sa modularité. Les développeurs ont fait le choix de concevoir un logiciel relativement basique, mais en laissant la possibililté à la communauté des utilisateurs de développer des *modules* (appelés *plugins*) permettant d'intégrer des fonctionnalités supplémentaires et de transformer l'expérience du logiciel.
+*Obsidian* excelle par sa modularité. Les développeurs ont fait le choix de concevoir un logiciel relativement basique, mais en laissant la possibilité à la communauté des utilisateurs de développer des *modules* (appelés *plugins*) permettant d'intégrer des fonctionnalités supplémentaires et de transformer l'expérience du logiciel.
 
 L'un de mes modules préférés, et un des plus utilisés est *Dataview* (bientôt remplacé par *Datacore*) qui permet d'automatiser la création de tableaux avec les données contenues dans le *Coffre*.
 
@@ -51,7 +51,7 @@ L'un de mes modules préférés, et un des plus utilisés est *Dataview* (bient�
 
 Au-delà des modules, qui permettent de rendre l'expérience *Obsidian* très personnelle, il est possible de modifier l'apparence du programme et de développer son propre *processus de travail* (*workflow*). Chaque utilisateur ou utilisatrice d'*Obsidian* en a un usage personnel et différent des autres. Il n'y a pas une manière unique de l'utiliser.
 
-Cette caractéristique peut déstabiliser au début. Lorsque j'ai commencé à l'utiliser, j'ai essayé de trouver *la* bonne manière de créer les liens, d'organiser les dossiers et les modules. Avec le temps, je me suis rendu compte que ce qui fonctionnait pour certains ne fonctionnait pas pour moi. C'est pourquoi je vous épargnerais des discussions interminables sur la *meilleure* manière de l'utiliser. Je vous conseille d'ailleurs de vous inspirer plutôt que d'appliquer minutieusement ce que d'autres ont fait. 
+Cette caractéristique peut déstabiliser au début. Lorsque j'ai commencé à l'utiliser, j'ai essayé de trouver *la* bonne manière de créer les liens, d'organiser les dossiers et les modules. Avec le temps, je me suis rendu compte que ce qui fonctionnait pour certains ne fonctionnait pas pour moi. C'est pourquoi je vous épargnerai des discussions interminables sur la *meilleure* manière de l'utiliser. Je vous conseille d'ailleurs de vous inspirer plutôt que d'appliquer minutieusement ce que d'autres ont fait. 
 
 ### Les bases
 
