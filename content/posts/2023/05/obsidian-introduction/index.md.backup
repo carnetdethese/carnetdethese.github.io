@@ -1,7 +1,7 @@
 ---
 title: "Obsidian Introduction"
 date: 2023-05-08T12:25:06+02:00
-draft: true
+draft: false
 authors: ["Alexandre"]
 ---
 
@@ -65,7 +65,6 @@ En cliquant sur *Créer*, le programme vous accompagne dans la création d'un no
 Une fois dans votre *Coffre*, vous pouvez créer des fichiers et des dossiers, et les organiser dans le panneau de gauche. Dans le panneau de droite se trouvent des onglets pour visualiser les liens entrants et sortants, les différentes étiquettes (*tags*) que vous pouvez intégrer dans vos notes, ainsi que la structure de vos documents (qui se construit automatiquement grâce aux balises `#` de Markdown).
 
 Pour cet article, le plan apparaît de cette manière dans le panneau de droite : ![](3.png)
-
 
 
 Pour créer des liens, *Obsidian* supporte les *wikilinks*. Une fois que vous avez plusieurs notes créées, vous pouvez très facilement créer des liens entre elles de cette manière : `[[notes 1]]`. Une fois les liens créés, vous pouvez les visualiser dans le panneau de droite.

@@ -1,7 +1,7 @@
 ---
-title: "Obsidian Introduction"
+title: "Obsidian - Introduction"
 date: 2023-05-08T12:25:06+02:00
-draft: true
+draft: false
 authors: ["Alexandre"]
 ---
 
