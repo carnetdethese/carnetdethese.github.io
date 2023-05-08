@@ -21,11 +21,11 @@ La base de données, du moment qu'elle vous sert bien à stocker des données, e
 
 Voici par exemple plusieurs captures d'écran du même jeu de données dans la même base mais organisé de façons différentes.
 
-![](Photo1.png)
+![](bdd-jan-Photo1.png)
 
-![](Photo2.png)
+![](bdd-jan-Photo2.png)
 
-![](Photo3.png)
+![](bdd-jan-Photo3.png)
 
 Vous aurez pu le constater, chaque présentation a ses avantages. Le jeu de données que j'ai choisi est mon jeu de passages. Je dois noter et enregistrer chaque passage qui me semble intéressant pour ma thèse, pour ensuite pouvoir le relier à des personnages ou à des événements importants : ils sont un peu ma matière première.
 
@@ -34,7 +34,7 @@ Dans la deuxième, chaque "carte" correspond à une ligne du tableur, dont seule
 
 Enfin, un logiciel de gestion de base de données offre généralement la possibilité de confectionner un formulaire, c'est-à-dire une interface permettant de saisir des données plus facilement (voire de permettre à d'autres personnes de les saisir).
 
-![](Photo4.png)
+![](bdd-jan-Photo4.png)
 
 Il n'y a qu'à saisir les données, cliquer sur "submit" et voilà ! Ça nous fait une ligne dans le tableau (un peu comme FramaForms [^2] vous me direz : eh oui, c'est la même chose !).
 
@@ -88,7 +88,7 @@ Vous pouvez constater que j'ai pas moins de quatorze jeux de données différent
 
 Si l'on prend le jeu "tribuns", on verra que peu de données lui sont réellement propres. Il y a le nom, le champ que j'ai intitulé "biographie", ses fonctions et ce que j'ai appelé "affiliation" qui comprend son appartenance à des groupes politiques (pour parler rapidement).
 
-![](Photo6.png)
+![](bdd-jan-Photo6.png)
 
 Le reste des données sont des "copies" faites par le logiciel, venant d'autres jeux. Si vous observez par exemple le champ "passages", y sont affichés les *loci* [^7]où j'ai trouvé des informations concernant ces tribuns. Bien sûr, je n'ai pas la prétention de dire que c'est moi qui les ai trouvés tout seul : bien d'autres l'ont fait avant moi et je n'ai fait que les recopier. Mais, si j'en trouve moi-même, ils y seront répertoriés.
 
@@ -98,7 +98,7 @@ J'attire également votre attention sur le champ "année d'exercice", qui est un
 
 Pour votre plaisir, voici un extrait de ma table "années".
 
-![](Photo7.png)
+![](bdd-jan-Photo7.png)
 
 J'espère donc que ce petit billet aura éveillé votre intérêt pour les bases de données relationnelles, et particulièrement celle de Baserow.
 
