@@ -2,6 +2,7 @@
 title: "Nommer les fichiers"
 date: 2023-05-08T22:33:51+02:00
 draft: false
+authors: ["Alexandre"]
 ---
 
 On pourrait m'accuser de chercher la petite bête dans le détail, et on aurait sûrement raison. Sans doute la question du nom de nos fichiers informatiques n'a pas une si grande importance que ça... Pourtant, il me semble que proposer des pistes pour une meilleure gestion des noms pourrait permettre de limiter certains problèmes que l'on peut rencontrer sur le long terme.
