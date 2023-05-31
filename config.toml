@@ -1,4 +1,4 @@
-baseURL = 'https://carnetdethese.github.io/'
+baseURL = 'https://carnetdethese.amimms.fr/'
 languageCode = 'fr'
 title = 'Carnet de thèse'
 
@@ -26,3 +26,10 @@ enableEmoji = true
   
  
   custom_css = ["css/custom.css"]
+  
+  
+[taxonomies]
+
+  author = "authors"
+  tag = "tags"
+  category = "categories"
