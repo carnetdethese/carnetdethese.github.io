@@ -1,6 +1,6 @@
 hr {
-  width: 20%;
+  margin: auto;
+  width: 10%;
   border-style: dotted none none;
-  border-width: 20px;
-  border-color: red;
+  border-width: 7px;
 }
