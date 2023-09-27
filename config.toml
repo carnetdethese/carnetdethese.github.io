@@ -2,7 +2,7 @@ baseURL = 'https://carnetdethese.amimms.fr/'
 languageCode = 'fr'
 title = 'Carnet de thèse'
 
-theme = "paper"
+
 DisqusShortname = 'carnetdethese'
 enableEmoji = true
 
@@ -33,3 +33,7 @@ enableEmoji = true
   author = "authors"
   tag = "tags"
   category = "categories"
+  
+ [module]
+  [[module.imports]]
+    path = "github.com/nanxiaobei/hugo-paper"

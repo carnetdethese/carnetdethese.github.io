@@ -2,6 +2,8 @@
 title: "Organiser et annoter les PDF grâce à Zotero"
 date: 2023-09-27T18:06:21+02:00
 draft: false
+authors: ["Alexandre"]
+```
 ---
 
 Je ne cesse de louer Zotero. Partout où je vais, je répète à l’envi, à qui veut l’entendre, que Zotero est l’outil le plus utile pour la recherche – et que sans lui, je serais sans doute incapable de garder la trace de tout ce que je consulte avec rigueur et méthode. 
@@ -13,8 +15,6 @@ Mais Zotero n’est pas seulement un excellent gestionnaire de références bibl
 Mais ce n’est pas tout : ces documents peuvent être ouverts et **annotés** *dans* Zotero ! Cette fonctionnalité, ajoutée lors de la [dernière grosse mise-à-jour du programme](https://www.zotero.org/blog/zotero-6/), rend le travail de recherche et de lecture beaucoup plus aisé. Nul besoin d’ouvrir un document Word à côté d’Adobe Acrobat (ou votre *pdf viewer* préféré) : tout est centralisé dans Zotero.
 
 ![](1.png)
-
-
 
 (en plus, on peut mettre de jolies couleurs)
 
