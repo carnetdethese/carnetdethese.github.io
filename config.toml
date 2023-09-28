@@ -34,6 +34,6 @@ enableEmoji = true
   tag = "tags"
   category = "categories"
   
- [module]
+[module]
   [[module.imports]]
     path = "github.com/nanxiaobei/hugo-paper"

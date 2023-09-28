@@ -3,7 +3,6 @@ title: "Organiser et annoter les PDF grâce à Zotero"
 date: 2023-09-27T18:06:21+02:00
 draft: false
 authors: ["Alexandre"]
-```
 ---
 
 Je ne cesse de louer Zotero. Partout où je vais, je répète à l’envi, à qui veut l’entendre, que Zotero est l’outil le plus utile pour la recherche – et que sans lui, je serais sans doute incapable de garder la trace de tout ce que je consulte avec rigueur et méthode. 
