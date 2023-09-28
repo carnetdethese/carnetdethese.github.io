@@ -1,5 +1,3 @@
-module github.com/carnetdethese/carnetdethese.github.io
+module github.com/carnetdethese/carnetdethese
 
-go 1.20
-
-require github.com/nanxiaobei/hugo-paper v0.0.0-20230922171429-47bac0a8c04c // indirect
+go 1.21.1
