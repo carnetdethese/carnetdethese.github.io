@@ -1,3 +1,3 @@
-module github.com/carnetdethese/carnetdethese
+module carnetdethese/carnetdethese.github.io
 
 go 1.21.1
