@@ -30,7 +30,7 @@ En général, la première idée qui nous vient lorsqu'on s'interroge sur la man
 
 Cela suffit dans certains cas, par exemple lorsque les fichiers n'ont pas vocation à être modifiés fréquemment. En revanche, dès lors que les fichiers sont nombreux, ont plusieurs versions différentes et sont ouverts tous les jours, ce mode de fonctionnement pose plusieurs problèmes.
 
-D'abord, la gestion des versions est particulièrement mauvaise. Quand on fait un copier-coller, le système d'exploitation ne fait *que* copier et coller, en écrasant toutes versions antérieures d'un fichier. Par ailleurs, les fichiers présents dans la copie qui ne nous sont plus utiles demeurent, et prennent de l'espace. 
+D'abord, la gestion des versions est particulièrement mauvaise. Quand on fait un copier-coller, le système d'exploitation ne fait *que* copier et coller, en écrasant toutes versions antérieures d'un fichier. Par ailleurs, les fichiers présents dans la copie qui ne nous sont plus utiles demeurent, et prennent de l'espace. Sur tous les systèmes, il existe des outils spécifiques permettant de pallier ce problème et dont on peut tirer avantage.
 
 Ensuite, l'opération qui, pour être efficace, doit être répétée régulièrement, implique une certaine discipline et un moment dédié à cela dans la journée. Pour peu que le nombre de fichiers soit important, cela peut parfois revenir à passer une dizaine de minutes à faire quelque chose de relativement peu intéressant.
 
