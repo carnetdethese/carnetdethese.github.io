@@ -27,7 +27,7 @@ Le module d'Obsidian est très bien fait et offre une synchronisation rapide des
 
 -- Il existe aussi un module pour LogSeq (je ne vous en veux pas). --
 
-Je trouve ce genre d'outils vraiment intéressants. Le monde d'internet est si foisonnant que j'ai souvent du mal à m'y retrouver. Les informations arrivent de partout, sans jamais s'arrêter. Alors si on peut se créer des *portes d'entrée* personnalisées qui nous permettent d'y voir plus clair, c'est une bonne nouvelle. 
+Je trouve ce genre d'outils vraiment intéressant. Le monde d'internet est si foisonnant que j'ai souvent du mal à m'y retrouver. Les informations arrivent de partout, sans jamais s'arrêter. Alors si on peut se créer des *portes d'entrée* personnalisées qui nous permettent d'y voir plus clair, c'est une bonne nouvelle. 
 
 ---
 
