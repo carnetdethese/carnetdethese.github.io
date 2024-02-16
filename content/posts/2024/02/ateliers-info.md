@@ -1,7 +1,8 @@
 ---
-title: "Ateliers Info"
+title: "Ateliers à l'école doctorale"
 date: 2024-02-16T18:34:36+01:00
 draft: false
+authors: ["Alexandre"]
 ---
 
 Avec mon camarade Jan B., nous avons organisé un cycle d'ateliers dédiés à l'exploration de quelques outils numériques utiles à la recherche universitaire. Ces ateliers ont lieu grâce à nos écoles doctorales, qui ont accepté de soutenir ce projet. 
