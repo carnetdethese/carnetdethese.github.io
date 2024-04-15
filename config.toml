@@ -12,6 +12,7 @@ enableEmoji = true
 
   # header social icons
   rss = true                        # show rss icon
+  github = "carnetdethese"
 
   # home page profile
   avatar = ''
