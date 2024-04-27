@@ -1,8 +1,17 @@
 ---
-title: "Pour les juristes : Dalloz sur Zotero !"
+title: "Pour les juristes : Dalloz et d'autres sur Zotero !"
 date: 2024-04-18T11:34:36+02:00
 draft: false
 authors: ["Alexandre"]
+---
+
+Edit : depuis la publication de ce billet, j'ai ajouté 4 autres connecteurs, qui sont aussi en attente de validation :
+
+- Dalloz Bibliothèque ;
+- Lextenso ;
+- Jus Politicum ;
+- Vie Publique.
+
 ---
 
 Une grande frustration quand on commence à utiliser Zotero quand on est juriste : peu sont les bases de données juridiques françaises à avoir eu droit à leurs connecteurs Zotero. Condamnés à rentrer manuellement les informations, on a pour beaucoup, je pense, pensé que le logiciel était difficilement utilisable avec Dalloz.
