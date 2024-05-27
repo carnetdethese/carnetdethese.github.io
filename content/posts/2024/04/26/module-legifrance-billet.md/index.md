@@ -4,11 +4,9 @@ date: 2024-04-26T15:12:20+02:00
 draft: false
 ---
 
-{{% callout warning %}}
-**!! IMPORTANT !!**
-
-UPDATE 27 mai 2024 : Le module a été approuvé par l'équipe d'Obsidian et intégré au Store interne du logiciel ! Vous pouvez dorénavant le retrouver directement sans passer par la méthode décrite ci-dessous.
-{{% /callout %}}
+{{< warning >}}
+_UPDATE 27 mai 2024_ : Le module a été approuvé par l'équipe d'Obsidian et intégré au Store interne du logiciel ! Vous pouvez dorénavant le retrouver directement sans passer par la méthode décrite ci-dessous.
+{{< /warning >}}
 
 Depuis que j'ai découvert que Légifrance avait droit à son API, je n'avais qu'une idée en tête : intégrer Légifrance dans Obsidian. C'est maintenant chose faite, en partie, pour les décisions de justice !
 

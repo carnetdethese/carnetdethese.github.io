@@ -16,13 +16,6 @@
       <description>Edit : depuis la publication de ce billet, j&amp;rsquo;ai ajouté 4 autres connecteurs, qui sont aussi en attente de validation :&#xA;Dalloz Bibliothèque ; Lextenso ; Jus Politicum ; Vie Publique. Une grande frustration quand on commence à utiliser Zotero quand on est juriste : peu sont les bases de données juridiques françaises à avoir eu droit à leurs connecteurs Zotero. Condamnés à rentrer manuellement les informations, on a pour beaucoup, je pense, pensé que le logiciel était difficilement utilisable avec Dalloz.</description>
     </item>
     <item>
-      <title>Quelques scripts qui peuvent être utiles...</title>
-      <link>http://localhost:1313/posts/2024/03/sync-clipboard/</link>
-      <pubDate>Wed, 13 Mar 2024 16:01:33 +0100</pubDate>
-      <guid>http://localhost:1313/posts/2024/03/sync-clipboard/</guid>
-      <description>Au cours des derniers mois, j&amp;rsquo;ai écrit quelques petits scripts en python et bash qui peuvent vous permettre d&amp;rsquo;accomplir quelques tâches pratiques. Ils sont tous disponibles sur GitHub. Je vais les présenter rapidement ici afin que vous ayez une idée de leur fonction.</description>
-    </item>
-    <item>
       <title>Read It Later - présentation d&#39;Omnivore</title>
       <link>http://localhost:1313/posts/2024/02/read-it-later/</link>
       <pubDate>Fri, 16 Feb 2024 21:26:13 +0100</pubDate>
