@@ -4,6 +4,12 @@ date: 2024-04-26T15:12:20+02:00
 draft: false
 ---
 
+{{% callout warning %}}
+**!! IMPORTANT !!**
+
+UPDATE 27 mai 2024 : Le module a été approuvé par l'équipe d'Obsidian et intégré au Store interne du logiciel ! Vous pouvez dorénavant le retrouver directement sans passer par la méthode décrite ci-dessous.
+{{% /callout %}}
+
 Depuis que j'ai découvert que Légifrance avait droit à son API, je n'avais qu'une idée en tête : intégrer Légifrance dans Obsidian. C'est maintenant chose faite, en partie, pour les décisions de justice !
 
 Le module est en attente de validation par l'équipe d'Obsidian pour intégrer le _store_ interne de l'application. Mais vous pouvez d'ores et déjà le télécharger sur la [page GitHub du projet](https://github.com/carnetdethese/legifrance-integration/).
@@ -60,10 +66,10 @@ Il est possible de changer le modèle suivant lequel la fiche est créée dans l
 
 ![](configuration.png)
 
-
 ## TODO
 
 Le module est encore jeune et mériterait quelques ajouts. Voilà les quelques idées à développer :
+
 - Laisser le choix du dossier dans lequel enregistrer les notes ;
 - Support d'autres textes que des décisions de justice - notamment les actes législatifs et administratifs ;
 - Ajouter un champ de recherche pour la date ;
