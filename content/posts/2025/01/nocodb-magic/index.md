@@ -9,7 +9,7 @@ La nouvelle année amène son lot de bonnes résolutions. J'ai un peu délaissé
 
 Pour ce premier billet de l'année, j'aimerais partager quelques idées sur l'utilisation des bases de données pour une meilleure gestion (je l'espère aussi) des informations relatives aux groupes de TD que nous avons en tant qu'enseignant•es. 
 
-Depuis que j'ai installé un petit Raspberry Pi à la maison, j'ai tendance à tester un certain nombre d'outils différents pour diverses tâches (to-do list, calendrier, gestion des repas, etc.). Récemment, j'ai essayé Baserow (dont avait déjà parlé mon cher ami Jan dans un [billet précédent](https://carnetdethese.amimms.fr/posts/2023/03/base-donnees.md/)) et NocoDB. J'ai trouvé NocoDB plus performant et polyvalent, et c'est de cela dont je vais vous parler.
+Depuis que j'ai installé un petit Raspberry Pi à la maison, j'ai tendance à tester un certain nombre d'outils différents pour diverses tâches (to-do list, calendrier, gestion des repas, etc.). Récemment, j'ai essayé [Baserow](https://baserow.io/) (dont avait déjà parlé mon cher ami Jan dans un [billet précédent](https://carnetdethese.amimms.fr/posts/2023/03/base-donnees.md/)) et [NocoDB](https://nocodb.com/). J'ai trouvé NocoDB plus performant et polyvalent, et c'est de cela dont je vais vous parler.
 
 > Un petit disclaimer : cela ne signifie pas que NocoDB est *mieux* dans l'absolu. Comme chaque outil, cela dépend de l'utilisation qu'on en a. En l'occurence, NocoDB est plus adapté à mes besoins.
 
