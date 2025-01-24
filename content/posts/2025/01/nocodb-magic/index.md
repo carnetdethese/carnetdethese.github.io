@@ -1,5 +1,5 @@
 ---
-title: "NocoDB Magic"
+title: "NocoDB Magic - Gestion des groupes de TD"
 date: 2025-01-24T16:13:10+01:00
 draft: false
 authors: ["Alexandre"]
