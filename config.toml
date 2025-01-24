@@ -4,7 +4,6 @@ languageCode = 'fr'
 title = 'Carnet de thèse'
 
 
-# DisqusShortname = 'carnetdethese'
 enableEmoji = true
 
 [params]
