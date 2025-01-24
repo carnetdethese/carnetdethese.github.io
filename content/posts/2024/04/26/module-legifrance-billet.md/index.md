@@ -2,6 +2,7 @@
 title: "Un module pour les juristes sur Obsidian"
 date: 2024-04-26T15:12:20+02:00
 draft: false
+authors: ["Alexandre"]
 ---
 
 {{< warning >}}
