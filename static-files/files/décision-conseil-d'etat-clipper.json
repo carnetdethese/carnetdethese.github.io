@@ -1,0 +1,39 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Décision Conseil d'Etat",
+	"behavior": "create",
+	"noteContentFormat": "## Fiche et commentaire\n\n{{\"Résume la décision de justice en créant une fiche d'arrêt détaillée en markdown, avec les sections suivantes : faits (bullet points), procédure (parties, décisions antérieures), moyens (arguments juridiques), questions de droit (fermées, précises), solutions (fondements juridiques, interprétations), chaque partie numérotée et titrée, débutant par un heading 3 avec le titre de la décision.\"}}\n\n## Abstrats\n\n{{selectorHtml:li.opened:nth-child(2) > div:nth-child(2)|markdown}}\n\n{{selectorHtml:.content-page|markdown}}\n\n## Mots clés\n\n{{selectorHtml:#abstractButton > div:nth-child(2)|markdown}}",
+	"properties": [
+		{
+			"name": "juridiction",
+			"value": "Conseil d'Etat",
+			"type": "text"
+		},
+		{
+			"name": "formation",
+			"value": "{{selector:h2.horsAbstract|replace:\\\"/^(.*?)-\\s?/g\\\":\\\"\\\"|trim}}",
+			"type": "text"
+		},
+		{
+			"name": "date",
+			"value": "{{selector:.main-title|split:\\\", \\\"|slice:2,3|date:(\\\"YYYY-MM-DD\\\", \\\"DD/MM/YYYY\\\")}}",
+			"type": "date"
+		},
+		{
+			"name": "numero",
+			"value": "{{selector:.main-title|split:\\\", \\\"|last}}",
+			"type": "text"
+		},
+		{
+			"name": "lien",
+			"value": "{{url}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https://www.legifrance.gouv.fr/ceta/*"
+	],
+	"noteNameFormat": "{{selector:.main-title|split:\", \"|last}}",
+	"path": "03 Ressources/03-09 Textes & décisions/03-09-02 Décisions/Conseil d'État/",
+	"context": "{{selectorHtml:.content-page|markdown}}"
+}
