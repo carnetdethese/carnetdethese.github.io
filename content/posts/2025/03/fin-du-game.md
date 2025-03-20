@@ -17,6 +17,10 @@ Par exemple, tout en consultant une décision du Conseil d'État sur Légifrance
 J'ai constitué quelques modèles intéressants, qui, en outre de permettre la récupération des données de Légifrance de manière efficace, (**chers étudiants, ne lisez pas la suite !**) intègrent un *prompt* pour LLM visant à la création d'une fiche d'arrêt instantanément.
 
 En voilà trois que j'ai créés en guise d'exemple :
+- [Pour les décisions du Conseil constitutionnel (site du Conseil constitutionnel)](https://carnetdethese.amimms.fr/static-files/files/d%C3%A9cision-conseil-constitutionnel-(site-du-conseil)-clipper.json) ;
+- [Pour les décisions du Conseil d'État](https://carnetdethese.amimms.fr/static-files/files/décision-conseil-d'etat-clipper.json) ;
+- [Pour les décisions de la Cour de cassation](https://carnetdethese.amimms.fr/static-files/files/décision-cour-de-cassation-clipper.json).
+
 
 Pour les importer, installez l'extension [Web Clipper](https://help.obsidian.md/web-clipper), créez un nouveau modèle et vous aurez la possibilité de les ajouter en cliquant sur "Importer" en haut à droite.
 
