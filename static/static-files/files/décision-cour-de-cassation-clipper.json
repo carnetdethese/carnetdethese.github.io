@@ -1,0 +1,39 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "Décision Cour de cassation",
+	"behavior": "create",
+	"noteContentFormat": "## Fiche et commentaire\n\n{{\"Résume la décision de justice en créant une fiche d'arrêt détaillée en markdown, avec les sections suivantes : faits (bullet points), procédure (parties, décisions antérieures), moyens (arguments juridiques), questions de droit (fermées, précises), solutions (fondements juridiques, interprétations), chaque partie numérotée et titrée, débutant par un heading 3 avec le titre de la décision.\"}}\n\n## Abstrats\n\n{{selectorHtml:li.opened:nth-child(2) > div:nth-child(2)|markdown}}\n\n{{selectorHtml:.content-page|markdown}}\n\n## Mots clés\n\n{{selectorHtml:#abstractButton > div:nth-child(2)|markdown}}",
+	"properties": [
+		{
+			"name": "juridiction",
+			"value": "Cour de cassation",
+			"type": "text"
+		},
+		{
+			"name": "formation",
+			"value": "{{selector:h2.horsAbstract|replace:\\\"/^(.*?)-\\s?/g\\\":\\\"\\\"|trim}}",
+			"type": "text"
+		},
+		{
+			"name": "date",
+			"value": "{{selector:.main-title|split:\\\", \\\"|slice:3,4|replace:(\\\"du \\\":\\\"\\\",\\\"janvier\\\":\\\"01\\\",\\\"février\\\":\\\"02\\\",\\\"mars\\\":\\\"03\\\",\\\"avril\\\":\\\"04\\\",\\\"mai\\\":\\\"05\\\",\\\"juin\\\":\\\"06\\\",\\\"juillet\\\":\\\"07\\\",\\\"août\\\":\\\"08\\\",\\\"septembre\\\":\\\"09\\\",\\\"octobre\\\":\\\"10\\\",\\\"novembre\\\":\\\"11\\\",\\\"décembre\\\":\\\"12\\\")|date:(\\\"YYYY-MM-DD\\\", \\\"DD MM YYYY\\\")}}",
+			"type": "date"
+		},
+		{
+			"name": "numero",
+			"value": "{{selector:.main-title|split:\\\", \\\"|slice:4,5}}",
+			"type": "text"
+		},
+		{
+			"name": "lien",
+			"value": "{{url}}",
+			"type": "text"
+		}
+	],
+	"triggers": [
+		"https://www.legifrance.gouv.fr/juri/*"
+	],
+	"noteNameFormat": "{{selector:.main-title|split:\", \"|last}}",
+	"path": "03 Ressources/03-09 Textes & décisions/03-09-02 Décisions/Cour de cassation",
+	"context": "{{selectorHtml:.content-page|markdown}}"
+}
