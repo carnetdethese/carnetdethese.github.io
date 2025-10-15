@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/sunblind.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+	<link rel="stylesheet" href="plugin/chalkboard/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<style>
+pre code {
+  white-space: pre-wrap !important;
+  word-break: break-word;
+}
+</style>
+
+
+# 3 Création de contenus
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Objectifs
+
+Savoir produire des contenus clairs, structurés et adaptés à leur support.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Plan
+
+1. Créer des documents textuels
+1. &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Créer des documents multimédia
+1. &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Créer des programmes informatiques
+
+<img src="https://cdn.pixabay.com/photo/2019/11/12/23/00/artist-4622221_1280.jpg" alt="création|350" style="width: 350px; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Développer des documents textuels
+
+> Produire des documents à contenu majoritairement textuel pour communiquer des idées, rendre compte et valoriser ses travaux (avec des logiciels de traitement de texte, de présentation, de création de page web, de carte conceptuelle, etc.).
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Traitement de texte : mise en forme, sommaire, styles
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Distinction entre deux grandes familles de logiciels
+
+-  **Les logiciels WYSIWYG** : Microsoft Word, LibreOffice Writer, Google Docs, etc.
+-  **Les systèmes de rendus** : LaTeX, Markdown, HTML, etc.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### **WYSIWYG** 
+<small>(*What You See Is What You Get*)</small>
+
+Désigne : programmes d'édition de documents avec interface visuelle permettant de voir, dès la rédaction, le rendu final.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Principaux outils
+-  [Microsoft Word](https://www.microsoft.com/fr-fr/microsoft-365/word)
+-  [Google Docs](https://docs.google.com/)
+-  [LibreOffice Writer](https://www.libreoffice.org/discover/writer/)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Principes de base à maîtriser
+
+-  Utilisation des styles pour homogénéiser la mise en forme
+-  Création automatique de sommaire
+-  Maîtrise des règles typographiques ([Lexique officiel](https://les-unpertinents.fr/Manuscrits/Lexique%20des%20règles%20typographiques%20en%20usage%20à%20l%27Imprimerie%20nationale2.pdf))
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## LaTeX, Markdown, autres langages de balisage
+
+- Langages de balisage : classe de langage informatique destinés à l'enrichissement de texte
+- Différents langages pour différentes utilisations :
+	- **HTML** : standard sur le web ;
+	- **LaTeX** : pour les documents scientifiques, les rapports institutionnels ;
+	- **Markdown** : pour la prise de notes, la rédaction de documentation
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### HTML (HyperText Markup Language)
+
+-   Langage de balisage utilisé pour structurer et présenter le contenu sur le web
+-   Permet de créer des pages web avec textes, images, liens, vidéos, formulaires
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemple
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Une petite page HTML</title>
+        <meta charset="utf-8" ></meta>
+    </head>
+    <body>
+        <h1>Un titre de niveau 1</h1>
+        
+        <p>
+            Un premier petit paragraphe.
+        </p>
+        
+        <h2>Un titre de niveau 2</h2>
+        
+        <p>
+            Un autre paragraphe contenant un lien pour aller
+            sur le site <a href="http://koor.fr">KooR.fr</a>.
+        </p>
+    </body>
+</html>
+```
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Résultat
+
+<img src="https://koor.fr/DevWeb/HTML/Images/premiere_page.png" alt="résultat" style="object-fit: scale-down">
+
+<small>Source : [koor.fr](https://koor.fr/DevWeb/HTML/premiere_page.wp)</small>
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### LaTeX
+
+-  Spécialisé dans le rendu scientifique, surtout mathématiques
+-  Avantages : produire des documents très structurés, précis, professionnels ;
+-  Demande user d’apprendre une syntaxe spécifique
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemple
+
+```latex
+% This is a simple sample document.  For more complicated documents take a look in the exercise tab. Note that everything that comes after a % symbol is treated as comment and ignored when the code is compiled.
+
+\documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
+
+\usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
+
+\title{Simple Sample} % Sets article title  
+\author{My Name} % Sets authors name  
+\date{\today} % Sets date for date compiled
+
+% The preamble ends with the command \begin{document}  
+\begin{document} % All begin commands must be paired with an end command somewhere  
+    \maketitle % creates title using information in preamble (title, author, date)  
+      
+    \section{Hello World!} % creates a section  
+      
+    \textbf{Hello World!} Today I am learning \LaTeX. %notice how the command will end at the first non-alphabet charecter such as the . after \LaTeX  
+     \LaTeX{} is a great program for writing math. I can write in line math such as `$a^2+b^2=c^2$` %$ tells LaTexX to compile as math  
+     . I can also give equations their own space:   
+    \begin{equation} % Creates an equation environment and is compiled as math  
+    \gamma^2+\theta^2=\omega 
+    \end{equation}  
+    If I do not leave any blank lines \LaTeX{} will continue  this text without making it into a new paragraph.  Notice how there was no indentation in the text after equation (1).    
+    Also notice how even though I hit enter after that sentence and here `$\downarrow$`  
+     \LaTeX{} formats the sentence without any break.  Also   look  how      it   doesn't     matter          how    many  spaces     I put     between       my    words.  
+      
+    For a new paragraph I can leave a blank space in my code. 
+
+\end{document} % This is the end of the document
+```
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Résultat
+
+<img src="https://s3.amazonaws.com/libapps/accounts/109251/images/Screen_Shot_2017-01-06_at_4.18.48_PM.png" alt="résultat" style="object-fit: scale-down">
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Markdown
+-  Simplifié, très utilisé sur le web
+-  Syntaxe claire, facile à apprendre
+-  Format très compatible (Github, Obsidian, Jupyter, etc.)
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemple 
+
+```markdown
+### LaTeX, Markdown, etc. : les systèmes de balisage
+
+#### HTML
+##### Avantages
+
+-   Indispensable pour la création de sites internet
+-   Très puissant pour structurer toutes sortes de contenus
+-   Supporté nativement par tous les navigateurs
+
+##### Inconvénients
+
+-   Nécessite d’apprendre une syntaxe spécifique (balises, attributs)
+-   Peut devenir complexe pour des projets très avancés
+-   Nécessite souvent d’être associé à CSS et JavaScript pour avoir des sites plus interactifs
+
+##### En résumé
+
+HTML est le socle fondamental du web : tout site repose sur sa structure initiale. Il est accessible, indispensable et souvent associé à d’autres technologies pour créer des pages modernes et interactives.
+
+#### LaTeX
+
+LaTeX est plus qu'un système de balisage mais dans l'ensemble, systèmes dont la philosophie repose sur la distinction entre le contenu et la forme.
+
+LaTeX a été développé et est spécialisé dans le rendu des documents scientifiques. Gère très bien les équations mathématiques. Est utilisé aussi en sciences économiques, et sciences humaines (je l'utilise pour ma thèse). Permet de réduire la taille des documents et d'améliorer les performances, mais est assez complexe et demande de l'apprentissage.
+
+#### Markdown
+
+Markdown est bcp plus simple, mais beaucoup moins puissant. A été développé pour l'écriture sur le web principalement. Est un standard implanté dans beaucoup de systèmes.
+
+Je ne m'étendrai pas sur la question, je vous laisse vous renseigner.
+```
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Résultat
+<img src="x/Images/Capture d’écran 2025-09-12 à 10.46.25.png" alt="" style="width: 350px; object-fit: fill">
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Exportation
+-  **PDF** : universel, fixe, ne peut pas facilement être modifié
+-  **DOCX / ODT** : format éditable, compatible avec Word et LibreOffice.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### PDF
+
+- **Avantages** : Sécurité, uniformité d’affichage, compression.  
+- **Inconvénients** : peu pratique pour l’édition ou la collaboration simultanée.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Docx / odt
+
+- **Avantages** : collaboration, très utilisé, compatibilité avec de nombreux logiciels
+- **Inconvénients** : lourds, parfois complexes si beaucoup d'images ou de macros, différences d'affichage possibles.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Introduction à l'accessibilité
+
+> L’accessibilité désigne l’ensemble des principes, pratiques et techniques qui permettent à toutes et tous, quelle que soit leur origine ou leur situation, d’accéder à et de comprendre un document ou un contenu.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pourquoi est-ce important ? 
+
+- **Obligation légale** : loi du 11 février 2005 dite *Loi Handicap* prévoit une obligation d'accessibilité numérique
+- **Respect des droits** : s'assurer que tout le monde bénéficie de la même information ;
+- **Ethique** : favoriser l'inclusion, la diversité, l'autonomie des individus ;
+- **Qualité** : améliorer l'usage pour tous
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Principes clefs 
+
+- Rendre l'information accessible **quelque soit le mode de perception** (prise en compte des différentes formes de handicaps) ;
+- Rendre la **navigation aisée** avec clavier, lecteur d'écran, synthèse vocale 
+- Rendre les **documents compatibles avec tous les appareils**.
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Charte de l'accessibilité de la communication d'Etat
+
+**2021** : publication d'une *Charte d'accessibilité de la communication de l'État* destinée à poser les principes de la communication administrative.
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Principaux éléments - les cinq outils
+
+1. **Langue des Signes** (LSF) ;
+1. &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Sous-titrage** & **audio-description**
+1. &shy;<!-- .element: class="fragment" data-fragment-index="2" -->**PDF** structuré ;
+1. &shy;<!-- .element: class="fragment" data-fragment-index="3" -->**ALT** - texte alternatif (image, vidéo) pour les personnages malvoyantes ;
+1. &shy;<!-- .element: class="fragment" data-fragment-index="4" -->**FALC** (Facile à Lire et à Comprendre).
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quelques exemples de techniques 
+
+- **Choix typographiques** : 
+	- Recommandation de la police *Marianne* et *Spectral*
+	- Contraste élevée. 
+		- Evitez ceci ! <!-- .element: style="color: lightgrey" -->
+- **Structure sémantique** :
+	- Styles dans Word, les sous-titres avec HTML (⁠`<h1>`, ⁠`<h2>`, etc.)
+	- Listes à puces ou numérotées 
+	- Mise en **évidence** des éléments importants. Cohérence
+		- Evitez de **mettre** en *italique*, en **gras**, <ins>de souligner</ins> ou <mark>surligner</mark> sans cohérence (illisible)
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<small>suite...</small>
+
+- **Texte alternatif** : description textuelle pour les images, transcription des contenus audio / vidéo.
+	- Dans HTML, attribut `alt` permet de proposer une alternative pour les lecteurs. A défaut, standard *ARIA*.
+- **Conformité aux standards posés par les organisations internationales** - notamment les [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) (*Web Content Accessibility Guidelines*) définis par la W3C ;
+	- Audit de la communication
+</div>
+
+</script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+Dans la continuité : 
+- [European Accessibility Act](https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/union-equality-strategy-rights-persons-disabilities-2021-2030/european-accessibility-act_en), entré en vigueur le 28 juin 2025
+	- Harmonise les règles d'accessibilités en Europe
+	- S'applique aux services numériques
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Développer des documents multimédias
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Pourquoi produire des contenus multimédia ?
+
+-  Communiquer **visuellement** et **efficacement**
+ - &shy;<!-- .element: class="fragment" data-fragment-index="1" -->**Enrichir** ses productions (photos, vidéos, sons)
+ - &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Créer des œuvres **interactives** ou remixées / remixables
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Un exemple - un jeu en javascript !
+
+<iframe height="600" style="width: 100%;" scrolling="no" title="Tower Blocks" src="https://codepen.io/ste-vg/embed/ppLQNW?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/ste-vg/pen/ppLQNW">
+  Tower Blocks</a> by Steve Gardner (<a href="https://codepen.io/ste-vg">@ste-vg</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Définitions et enjeux
+
+-  **Multimédia** : supports combinant images, sons, vidéos, animations
+-  Important dans la **communication moderne**, réseaux sociaux, sites web
+
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWg0dWVzbW04MjFrbmgxcjJwcjkydGtjMzNrMTN5eTluZ3JndHA0byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IwAZ6dvvvaTtdI8SD5/giphy.gif" alt="gif the office|300" style="width: 300px; object-fit: fill" class="fragment" data-fragment-index="4">
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemples de codes à suivre pour réussir sur Instagram ou TikTok
+
+- Rapidité du montage
+- Vidéo courte, avec une accroche dans les 3 premières secondes 
+- Format vertical (9:16) pour mobile  
+- Miniature et titre accrocheur (*clickbait* ou piège à clics)  
+- Sous-titre captivants
+- Call to Action (CTA) clair et engageant  
+- Utilisation des tendances (musique à la mode)  
+- Horaires de publication stratégiques  
+- Interaction avec la communauté (réponses, réactions en live, vidéos)
+</div>
+
+</script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Formats principaux
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Images
+
+| Format | Avantages                                                                      | Inconvénients                                                            |
+| ------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| .jpg   | - Taille de fichier réduite<br>- Adapté aux photos<br>- Large compatibilité    | - Compression destructive<br>- Perte de qualité<br>- Pas de transparence |
+| .png   | - Transparence totale<br>- Qualité sans perte<br>- Idéal pour graphiques       | - Fichiers plus volumineux<br>- Non adapté aux photos                    |
+| .webp  | - Compression supérieure<br>- Plus petit que le PNG<br>- Supporte transparence | - Compatibilité limitée<br>- Support navigateur variable                 |
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Vidéos
+
+| Format | Avantages                                                          | Inconvénients                                            |
+| ------ | ------------------------------------------------------------------ | -------------------------------------------------------- |
+| .mp4   | - Haute qualité<br>- Large compatibilité<br>- Supporte audio/vidéo | - Taille de fichier importante<br>- Compression variable |
+| .webm  | - Optimisé web<br>- Open source<br>- Léger                         | - Moins de compatibilité<br>- Support navigateur limité  |
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Audio
+
+| Format | Avantages                                                                 | Inconvénients                                           |
+| ------ | ------------------------------------------------------------------------- | ------------------------------------------------------- |
+| .mp3   | - Taille réduite<br>- Très répandu<br>- Qualité acceptable                | - Perte de qualité audio<br>- Compression destructive   |
+| .wav   | - Qualité audio maximale<br>- Audio non compressé<br>- Idéal pour édition | - Fichiers très volumineux<br>- Non adapté au streaming |
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Pour approfondir
+
+- V. les vidéos d'Overflow sur la compression jpeg et la vidéo d'Underscore_ avec JB Kempf sur les codecs vidéo dans la playlist Culture numérique
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Insertion de contenu multimédia
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Démo avec Canva - document multimédia
+
+[Canva](https://www.canva.com/)
+
+<img src="x/Images/Capture d’écran 2025-09-12 à 12.10.08.png" alt="" style="object-fit: scale-down">
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Démo avec CapCut - édition vidéo
+
+[CapCut](https://www.capcut.com/)
+
+<img src="x/Images/Capture d’écran 2025-09-12 à 12.15.36.png" alt="" style="object-fit: scale-down">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Outils recommandés
+
+-  **Présentations** : PowerPoint, Google Slides, Canva, RevealJS
+-  **Photos** : Photoshop, Lightroom GIMP, Darktable
+-  **Vidéos** : DaVinci Resolve, Adobe Premiere, CapCut, Blender
+-  **Images vectorielles** : Inkscape, Illustrator
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Problèmes courants et conseils
+
+-  Fichiers non reconnus ou incompatibles
+-  Qualité médiocre - attention au niveau de compression (démo avec Gimp)
+-  Taille excessive :
+	- impact sur la performance de l'ordinateur ;
+	- impossibilité d'envoyer par mail ou service de transfert gratuit ;
+-  Vérifier la compatibilité, compresser, tester
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" data-background-image="https://studioab.fr/wp-content/uploads/2021/04/studio-ab-design-systeme-etat-1.jpg" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<div class="block">
+
+### Le Système de Design de l'Etat
+
+- Obligation depuis le 7 juillet 2023 pour tous les sites Internet mis à disposition des citoyens par l’État, de même que l’utilisation d’une extension `.gouv.fr` pour les noms de domaine ;
+- Développé par le Service d'Information du Gouvernement ;
+- Défini les règles de Design à employer sur les sites officiels (administration d'Etat notamment)
+- Banques de composants à destination des développeurs et communicants
+
+[Lien vers le système](https://www.systeme-de-design.gouv.fr/version-courante/fr).
+
+</div>
+
+ <!-- .element: style="background: white; padding: 1.5rem" -->
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Objectif annoncé
+
+<div class="block">
+
+*L’écosystème numérique de l’État est vaste et complexe. Pour rassurer et accompagner le citoyen dans un contexte grandissant de désinformation et de manipulation de l’information, le Système de Design de l’État et les noms de domaine en .gouv.fr sont des repères qui lui assurent qu’il est sur un site officiel.* 
+
+</div>
+
+ <!-- .element: style="background: lightgrey; padding: 1.4rem" -->
+
+Source : [site officiel du système de design de l'Etat](https://www.systeme-de-design.gouv.fr/)
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Programmer : une introduction
+
+-  **Émergence du rôle des LLM** (modèles de langage) dans la génération de code
+-  **Outils no-code** pour créer rapidement des applications (Airtable, Zapier, Notion)
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Faut-il apprendre à programmer ?
+
+Selon vous ? Pourquoi ?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Pour
+
+- **Evolution des usages et des outils** : important de connaître leur fonctionnement ;
+- **Agents doivent être capables** d'expliquer le fonctionnement d'un algo pour la décision.
+- **Evolution professionnelle plus variée** ;
+- **Comprendre les conversations et enjeux des *data scientists / engineers***.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Contre
+
+- Transition numérique est **interdisciplinaire** : chacun peut jouer le rôle qu'il souhaite (pas obligé de programmer, donc) ;
+- Enorme **investissement en temps** ;
+- **Connaître les bases d'un langage ne signifie pas savoir programmer** (il y a aussi l'algorithmique, le testing, la performance, la maintenabilité, etc.)
+- Beaucoup de programmeurs utilisent des **morceaux de code déjà faits** (cela est considéré comme une bonne pratique)
+	- Dans le même style : **les LLM et le no-code se développent**.
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Objectifs de la programmation
+
+-  Automatiser tâches répétitives
+-  Résoudre des problèmes complexes
+-  Créer des solutions innovantes
+-  Développer une pensée analytique et logique
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Quelques principes de base 
+
+
+<div class="block">
+
+Un algorithme est une suite d'opérations, qu'on nomme **instructions**, à effectuer pour atteindre un objectif (résoudre un problème, cuisiner un plat, faire se déplacer un robot, etc.). On dit que ces instructions doivent être **exécutées**.
+</div>
+
+ <!-- .element: style="background: lightgrey; padding: 1.4rem" -->
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Distinction entre algorithme et programme informatique
+
+
+```pseudocode
+  Fonction factorielle (n)
+     r = 1
+     Pour i de 1 jusqu'à n avec un pas de 1
+        r = r*i
+     Fin pour
+     Retourner r
+  Fin Fonction
+```
+<small>Exemple de pseudo-code pour calculer la factorielle d'un nombre entier (`$3! = 1*2*3 = 6$`)</small>
+</div>
+
+</script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Les blocs de base
+
+- Variables ;
+- Fonctions
+- Structures de contrôle (boucles, conditions)
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Langages de programmation 
+
+- C / C# / C++ / Rust (application desktop)
+- Python / R / Go (multi-usage, statistiques, texte)
+- Javascript, HTML, CSS (Web) 
+- Java, Kotlin, Swift (mobile)
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Les différences notables 
+
+- Langage **bas** / **haut** niveau
+- Langage **compilé** / **interprété**
+</div>
+
+</script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Exemple de programme en python
+
+```python
+def votreNom():
+
+	nom = input("Quel est votre prénom?\n\n")
+
+	return nom
+
+nom = votreNom()
+
+print("Salut " + nom + " !")
+```
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 700px; width: 960px; min-height: 700px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Conclusion
+
+-  La création de contenu passe par l’apprentissage des outils de production
+-  La diversité des formats et médias permet d’adapter ses messages
+-  La maîtrise technique et la créativité sont essentielles
+-  Toujours respecter droits d’auteur et principes éthiques
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/chalkboard/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+	      RevealPointer,
+		  RevealChalkboard, 
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+				{ icon: '<i class="fa fa-pen-square"></i>',
+				title: 'Toggle chalkboard (B)',
+				action: 'RevealChalkboard.toggleChalkboard();'
+				},
+				{ icon: '<i class="fa fa-pen"></i>',
+				title: 'Toggle notes canvas (C)',
+				action: 'RevealChalkboard.toggleNotesCanvas();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":true,"progress":true,"slideNumber":true,"transition":"slide","transitionSpeed":"slow"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>
