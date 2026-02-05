@@ -34,4 +34,4 @@ L'idée de ce tracker est de *[gamifier](https://fr.wikipedia.org/wiki/Ludificat
 
 Si vous souhaitez approfondir un peu les éléments de programmation, n'hésitez pas à me le faire savoir !
 
-Alex
+Alexandre
