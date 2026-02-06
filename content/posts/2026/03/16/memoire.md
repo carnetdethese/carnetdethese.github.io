@@ -21,5 +21,4 @@ Bref. Me voilà replongé, depuis quelques jours, dans mes palais de mémoire, a
 
 J'essaierai, bien que cela devient difficile avec la rédaction et les enseignements, de présenter quelques observations ici sur le rapport entre prise de notes et mémoire -- et la manière d'en tirer partie dans le cadre d'un travail de recherche.
 
-
 [^1]: Je reprends la vision d'Ed Cooke que relate Josh Foer, dans son récit sur sa victoire au US Memory Championship en 2006 (v. Foer, *Moonwalking with Einstein*, Penguin Books, 2012).
