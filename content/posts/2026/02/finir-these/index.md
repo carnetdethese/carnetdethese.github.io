@@ -2,7 +2,7 @@
 title: "Finir la thèse - le tracker de mots"
 date: 2026-02-05T09:14:19+01:00
 draft: false
-linkedin_published: false
+linkedin_published: true
 linkedin_post: |-
     Le début de la fin... 
 
