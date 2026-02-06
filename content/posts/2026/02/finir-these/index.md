@@ -2,6 +2,21 @@
 title: "Finir la thèse - le tracker de mots"
 date: 2026-02-05T09:14:19+01:00
 draft: false
+linkedin_published: false
+linkedin_post: |-
+    Le début de la fin... 
+
+    Quand j'ai commencé ma thèse, j'ai créé un blog pour partager mon expérience de doctorant, pour discuter des outils, de mon apprentissage de la recherche, etc. 
+
+    Bilan de l'année dernière : 2 billets ! C'est peu, mais...
+
+    ...2026 sera différente ! 
+
+    Tout en terminant la rédaction de mon manuscrit, je vais essayer de revenir sur cette expérience, partager les outils, des astuces, des petits hacks qui m'ont aidé au cours de ces dernières années. 
+
+    On commence aujourd'hui avec un exemple de *ludification*. Mais si, vous savez, ces petites techniques qui utilisent des mécanismes de jeux vidéo pour rester motivé ! 😉
+
+    Ça se passe ici : https://lnkd.in/ddRh8tQ8
 ---
 
 Il y a un an, je faisais le souhait d'alimenter ce blog un peu plus régulièrement... Pari non tenu ! 
