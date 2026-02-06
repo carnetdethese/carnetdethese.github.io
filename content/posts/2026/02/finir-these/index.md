@@ -16,7 +16,7 @@ linkedin_post: |-
 
     On commence aujourd'hui avec un exemple de *ludification*. Mais si, vous savez, ces petites techniques qui utilisent des mécanismes de jeux vidéo pour rester motivé ! 😉
 
-    Ça se passe ici : https://lnkd.in/ddRh8tQ8
+    Ça se passe ici :
 ---
 
 Il y a un an, je faisais le souhait d'alimenter ce blog un peu plus régulièrement... Pari non tenu ! 
