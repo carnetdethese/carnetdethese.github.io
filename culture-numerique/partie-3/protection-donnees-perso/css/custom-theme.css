@@ -1,0 +1,102 @@
+/* custom-theme.css */
+.reveal {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: 22px; /* Base size for paragraphs and body */
+  color: #232323;
+  background: #f9f9fb;
+}
+
+/* Title Slide */
+.reveal h1 {
+  font-size: 2.2em; /* Small to medium title */
+  font-weight: 700;
+  margin-bottom: 0,6em;
+  margin-top: 0,3em;
+  letter-spacing: -1px;
+}
+
+/* Section Titles */
+.reveal h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 0,4em;
+  margin-top: 0,8em;
+}
+
+/* Subtitles and smaller headers */
+.reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 0,2em;
+  margin-top: 0,5em;
+}
+
+/* Paragraphs */
+.reveal p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 1em;
+  margin-top: 0,5em;
+  max-width: 900px;
+}
+
+/* Lists: Space and clarity */
+.reveal ul, .reveal ol {
+  margin-left: 1,8em;
+  margin-bottom: 1em;
+  font-size: 1em;
+  line-height: 1.5;
+  max-width: 950px;
+}
+.reveal li {
+  margin-bottom: 0,5em;
+}
+
+/* Images: Responsive and with space */
+.reveal img {
+  max-width: 90%;
+  max-height: 400px;
+  margin: 1,5em auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+}
+
+/* Give slides extra padding for room */
+.reveal .slides section {
+  padding: 40px 60px;
+}
+
+/* Optional: more room for lists/images in two-column layouts */
+.reveal .columns {
+  display: flex;
+  gap: 2em;
+}
+.reveal .column {
+  flex: 1;
+}
+
+/* Links */
+.reveal a {
+  color: #0057b7;
+  text-decoration: underline;
+}
+
+/* Code blocks */
+.reveal code, .reveal pre {
+  font-size: 0.95em;
+  background: #eaeaea;
+  color: #2d2d2d;
+  border-radius: 4px;
+  padding: 0,2em 0,4em;
+}
+
+/* Footer (if used) */
+.reveal .footer {
+  font-size: 0.7em;
+  color: #888;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}

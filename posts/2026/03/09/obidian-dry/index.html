@@ -1,0 +1,370 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="fr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  
+    
+  
+  <title>Comment Obsidian m&#39;aide à rester DRY - Carnet de thèse</title>
+  <link rel="stylesheet" href="/css/custom.css">
+  <script src="https://kit.fontawesome.com/c28017ba5c.js" crossorigin="anonymous"></script>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="En 1999, Andrew Hunt et David Thomas, deux programmeurs américains, publient The Pragmatic Programmer. Ce livre a pour ambition de proposer des astuces très concrètes permettant d&rsquo;améliorer le développement de logiciels.
+Dans ce livre, un concept a retenu mon attention et celui de nombreux développeurs : Don&rsquo;t Repeat Yourself, ou DRY.
+L&rsquo;idée fondamentale de ce sigle est la suivante : « Dans un système, toute connaissance doit avoir une représentation unique, non ambiguë, faisant autorité1 »." />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://localhost:1313/theme.png" />
+
+  
+  
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://localhost:1313/github.svg" />
+  
+  <link rel="preload" as="image" href="http://localhost:1313/rss.svg" />
+  
+
+  
+  <link rel="icon" href="http://localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.154.5">
+
+  
+  
+   
+  <link rel="icon" type="image/x-icon" href="/static-files/images/favicon.png">
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3PYPVBPZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3PYPVBPZG');
+</script>
+
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="http://localhost:1313/"
+      >Carnet de thèse</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >A propos</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/posts/"
+        >Fil d&#39;actualité</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/carnetdethese"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./rss.svg)"
+        href="http://localhost:1313/index.xml"
+        target="_blank"
+        rel="alternate"
+      >
+        rss
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">Comment Obsidian m&#39;aide à rester DRY</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Feb 6, 2026</time>
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Alexandre</span>
+      
+    </div>
+    
+  </header>
+
+  <section><p>En 1999, Andrew Hunt et David Thomas, deux programmeurs américains, publient <em>The Pragmatic Programmer</em>. Ce livre a pour ambition de proposer des astuces très concrètes permettant d&rsquo;améliorer le développement de logiciels.</p>
+<p>Dans ce livre, un concept a retenu mon attention et celui de nombreux développeurs : Don&rsquo;t Repeat Yourself, ou DRY.</p>
+<p>L&rsquo;idée fondamentale de ce sigle est la suivante : « Dans un système, toute connaissance doit avoir une représentation unique, non ambiguë, faisant autorité<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> ».</p>
+<p>L&rsquo;objectif est de rendre chaque information unique afin de limiter la redondance d&rsquo;information, les endroits où celle-ci peut être stockée, d&rsquo;améliorer la maintenabilité du système et de permettre sa réutilisation.</p>
+<p>En quoi l&rsquo;application de ce principe à notre travail de recherche peut-elle nous être utile, me direz-vous ?</p>
+<p>Imaginons que vous travaillez sur un thème tel que la notion de police administrative (thème classique du droit administratif). Vous allez lire des articles, des livres, consulter de la jurisprudence pertinente. Bref, autant de ressources différentes, éparpillées dans d&rsquo;innombrables bases de données et stockées sur des supports différents.</p>
+<p>Comment s&rsquo;assurer de ne pas répéter plusieurs fois une idée ou même une citation ? Si on travaille avec des documents Word (ou un seul gros document), on peut être amené à copier-coller des éléments à plusieurs endroits, là où le contexte le justifie. Dans l&rsquo;exemple de la police administrative, cela pourrait se manifester par la répétition de l&rsquo;apport de la décision Morsang-sur-Orge qui affirme « que, par son objet même, une telle attraction [i.e. le lancer de nain] porte atteinte à la dignité de la personne humaine ».</p>
+<p>Heureusement, cet éparpillement n&rsquo;est pas une fatalité. Grâce à des outils tels que Obsidian, qui fonctionnent grâce à un système de « blocs », il est possible de construire un système de notes rationnalisé.</p>
+<h1 id="1-la-note-unique">1 La note unique</h1>
+<p>Le DRY consiste à construire un bloc unique, une référence de vérité pour le reste du système. Dans l&rsquo;exemple mobilisé, cela consiste à la rédaction d&rsquo;une fiche d&rsquo;arrêt sur la décision en question, contenant le texte intégral de la décision accompagné de commentaires et d&rsquo;un résumé.</p>
+<p>Dans cette note, on identifiera les sections les plus importantes pouvant être réexploitées par la suite.</p>
+<h1 id="2-la-transclusion-ou-lart-de-citer">2 La transclusion (ou l&rsquo;art de citer)</h1>
+<p>Dans Obsidian, il est très facile de faire ce qu&rsquo;on appelle une « transclusion ». Grâce à la syntaxe des liens (<code>[[]]</code>) précédé d&rsquo;un point d&rsquo;exclamation (<code>![[note]]</code>), on peut inclure dans une note une autre note. Dans ce cas, c&rsquo;est la note entière qui sera intégrée.</p>
+<p>Si on souhaite être plus précis et ne viser qu&rsquo;un élément spécifique de la note, deux possibilités :</p>
+<ul>
+<li>Pour viser un titre (les éléments contenant des <code>#</code> en début de ligne) : <code>![[note#titre]]</code> ;</li>
+<li>Pour viser un bloc précis : <code>![[note#^reference]]</code>. Cette référence est générée, par défaut, automatiquement par Obsidian mais il est aussi possible d&rsquo;ajouter à la fin d&rsquo;un texte l&rsquo;élément <code>^reference-précise</code> pour rendre l&rsquo;élément plus lisible.</li>
+</ul>
+<p>Le logiciel est conçu de telle manière que le simple fait de taper les mots du bloc que l&rsquo;on souhaite référencer donne des suggestions. C&rsquo;est très rapide.</p>
+<h1 id="3-une-maintenance-simplifiée">3 Une maintenance simplifiée</h1>
+<p>C&rsquo;est là que la magie opère : une fois ces transclusions introduites dans les notes, toute modification de la note initiale se répercute dans le reste du système. Cela signifie que si l&rsquo;avis change sur une question, ou qu&rsquo;une faute est corrigée dans le paragraphe initial, il ne sera pas nécessaire de tout reprendre.</p>
+<h1 id="4-exemples">4 Exemples</h1>
+<p>Dans le cadre de la préparation de mes enseignements, je suis amené à aborder des décisions que j&rsquo;ai déjà eues l&rsquo;occasion de consulter auparavant. Plutôt que de copier les éléments dans chaque note de préparation de séances, j&rsquo;utilise la transclusion. Le processus est rapide, efficace, et permet de m&rsquo;assurer que chacune de mes notes bénéficie de mes efforts les plus récents.</p>
+<p>Autre exemple: j&rsquo;ai une note contenant le texte intégral de la Constitution de 1958 et une autre contenant la DDHC de 1789. Puisque je suis amené, tant dans le cadre de mon travail de recherche que dans l&rsquo;enseignement, à mobiliser ces sources, je peux utiliser de manière très simple la transclusion pour intégrer les articles dans mes notes. En plus de faciliter les choses, cela me permet d&rsquo;obtenir un ensemble de relations entre les notes et d&rsquo;obtenir un joli graphe:</p>
+<p><figure>
+        <img src="constitution-graphe.png" 
+             alt="A gauche: le texte de la Constitution - à droite: le graphe relationnel" 
+              title="A gauche: le texte de la Constitution - à droite: le graphe relationnel" >
+        
+            <figcaption>A gauche: le texte de la Constitution - à droite: le graphe relationnel</figcaption>
+        
+    </figure></p>
+<p>Un autre exemple tiré de mes notes conceptuelles. Il s&rsquo;agit ici d&rsquo;une note relative aux différentes définitions du droit administratif données par les auteurs. Voilà comment celle d&rsquo;Ivor Jennings est présentée.</p>
+<p><figure>
+        <img src="raw.png" 
+             alt="La source brute" 
+              title="La source brute" >
+        
+            <figcaption>La source brute</figcaption>
+        
+    </figure></p>
+<p><figure>
+        <img src="preview.png" 
+             alt="Le résultat" 
+              title="Le résultat" >
+        
+            <figcaption>Le résultat</figcaption>
+        
+    </figure></p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Cet outil n&rsquo;est pas qu&rsquo;un outil de <em>geek</em>. C&rsquo;est une véritable technique au service de la gestion de vos notes.</p>
+<p>Par ailleurs, c&rsquo;est assez ludique. L&rsquo;idée de « jouer avec les idées » prend véritablement du sens : chaque idée devient littéralement un bloc qu&rsquo;on peut agencer au sein d&rsquo;une démonstration.</p>
+<p>Et vous, comment gérez-vous la répétition dans vos recherches ? Utilisez-vous d&rsquo;autres outils pour centraliser vos connaissances ?</p>
+<p>Alexandre</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Thomas David et Hunt Andrew, The pragmatic programmer: your journey to mastery, Second edition, 20th anniversary edition., Boston, Addison-Wesley, 2020, p. 27 : « Every piece of knowledge must have a single, unambiguous, authoritative representation within a system. »&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</section>
+
+  
+  
+
+  
+  
+  
+  <nav
+    class="mt-24 flex rounded-lg bg-black/[3%] p-1.5 text-lg dark:bg-white/[8%]"
+  >
+    
+    <a
+      class="flex w-1/2 items-center rounded-md p-6 pr-3 no-underline hover:bg-black/[2%]"
+      href="http://localhost:1313/posts/2026/03/16/raycast/"
+      ><span class="mr-1.5">←</span><span>Raycast</span></a
+    >
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-md p-6 pl-3 no-underline hover:bg-black/[2%]"
+      href="http://localhost:1313/posts/2026/03/30/automatisation-n8n/"
+      ><span>Comment j&#39;ai simplifié la publication de mes billets</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2026
+    <a class="link" href="http://localhost:1313/">Carnet de thèse</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+  </body>
+</html>
