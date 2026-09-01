@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline';">
+  <title>Notes — Partiel</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f0f13;
+      --panel:    #16161d;
+      --border:   #2a2a38;
+      --accent:   #e8d5a3;
+      --accentDim:#b8a87a;
+      --text:     #f0ece0;
+      --muted:    #6b6880;
+      --good:     #7ecfa0;
+      --bad:      #e07070;
+      --mid:      #7ab8e0;
+      --purple:   #c97de0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, serif;
+      min-height: 100vh;
+      padding: 24px 16px;
+      overflow-x: hidden;
+    }
+
+    #app {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header { margin-bottom: 20px; }
+    .header h1 {
+      font-family: monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -1px;
+      display: inline;
+    }
+    .header .count {
+      color: var(--muted);
+      font-size: 13px;
+      margin-left: 10px;
+    }
+    .header-bar {
+      width: 40px; height: 2px;
+      background: var(--accentDim);
+      margin-top: 6px;
+    }
+
+    /* ── Keyboard input (desktop) ── */
+    .kb-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .kb-input {
+      flex: 1;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: monospace;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .kb-input:focus { border-color: var(--accent); }
+    .kb-input::placeholder { color: var(--muted); }
+    .kb-add-btn {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .kb-add-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f0f13;
+    }
+
+    /* ── Main 2-col layout ── */
+    .main-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    /* ── Numpad ── */
+    .numpad-col { flex: 0 0 200px; }
+    .numpad { display: flex; flex-direction: column; gap: 6px; }
+    .numpad-row { display: flex; gap: 6px; }
+    .np-btn {
+      flex: 1;
+      padding: 14px 0;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: monospace;
+      font-size: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition: filter 0.08s;
+    }
+    .np-btn:active, .np-btn.pressed { filter: brightness(1.5); }
+    .np-btn.btn-back  { background: #211616; border-color: #3a2020; color: var(--bad); }
+    .np-btn.btn-dot   { background: #161621; border-color: #20203a; color: var(--mid); }
+
+    .add-btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 14px 0;
+      background: #1a1a22;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-family: monospace;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: default;
+      transition: all 0.15s;
+      touch-action: manipulation;
+    }
+    .add-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f0f13;
+      cursor: pointer;
+    }
+
+    /* ── Right col ── */
+    .right-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    /* ── Display ── */
+    .display {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: right;
+    }
+    .display-label {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .display-value {
+      font-family: monospace;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: -2px;
+      line-height: 1;
+      min-height: 58px;
+      transition: color 0.2s;
+    }
+    .display-denom {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ── Stats ── */
+    .stats-row {
+      display: flex;
+      gap: 8px;
+    }
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+      min-width: 0;
+    }
+    .stat-icon { font-size: 15px; line-height: 1; }
+    .stat-val  {
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .stat-lbl  {
+      color: var(--muted);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .stats-placeholder {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 13px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      min-height: 100px;
+    }
+
+    /* ── Distribution ── */
+    .distrib-section { margin-bottom: 16px; }
+    .distrib-label {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .distrib-bar {
+      display: flex;
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      background: var(--border);
+    }
+    .distrib-segment { flex: 1; opacity: 0.85; }
+    .distrib-scale {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* ── Notes list ── */
+    .notes-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .notes-title {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .clear-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+      font-family: monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      cursor: pointer;
+    }
+    .notes-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .note-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 8px;
+    }
+    .note-val {
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 700;
+      min-width: 32px;
+      text-align: right;
+    }
+    .note-denom { color: var(--muted); font-size: 10px; }
+    .note-edit-btn, .note-del-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+    }
+    .note-edit-btn { color: var(--muted); font-size: 11px; }
+    .note-del-btn  { color: var(--bad);   font-size: 13px; opacity: 0.7; }
+    .note-edit-input {
+      width: 40px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+    }
+    .note-confirm-btn {
+      background: none;
+      border: none;
+      color: var(--good);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* ── Hidden / visible helpers ── */
+    .hidden { display: none !important; }
+
+    /* ── PORTRAIT (≤ 519px) ── */
+    @media (max-width: 519px) {
+      body { padding: 14px 10px; }
+
+      .kb-row { display: none; }         /* hide keyboard row on mobile */
+
+      .main-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .numpad-col { flex: none; width: 100%; }
+
+      .display { padding: 12px 16px; }
+      .display-value { font-size: 44px; min-height: auto; }
+
+      .right-col { gap: 8px; }
+
+      /* stats: single compact row */
+      .stats-row { gap: 5px; }
+      .stat-card  { padding: 8px 8px; }
+      .stat-val   { font-size: 15px; }
+
+      /* reorder: display first, then stats, then numpad */
+      .right-col  { order: -1; }
+    }
+
+    /* ── WIDE (≥ 520px) ── */
+    @media (min-width: 520px) {
+      /* hide numpad add btn on wide — keyboard row is used instead */
+      .numpad-col .add-btn { display: block; } /* keep visible on wide for mouse use */
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>NOTES — PARTIEL</h1>
+      <span class="count hidden" id="count-label"></span>
+    </div>
+    <div class="header-bar"></div>
+  </div>
+
+  <!-- Keyboard input row (desktop) -->
+  <div class="kb-row">
+    <input
+      class="kb-input"
+      id="kb-input"
+      type="text"
+      inputmode="decimal"
+      placeholder="Ex : 12 14.5 8 17  (Entrée pour ajouter)"
+      maxlength="60"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <button class="kb-add-btn" id="kb-add-btn" type="button">+ AJOUTER</button>
+  </div>
+
+  <!-- Main 2-col -->
+  <div class="main-row">
+
+    <!-- Numpad column -->
+    <div class="numpad-col">
+      <div class="numpad" id="numpad">
+        <div class="numpad-row">
+          <button class="np-btn" data-key="7" type="button">7</button>
+          <button class="np-btn" data-key="8" type="button">8</button>
+          <button class="np-btn" data-key="9" type="button">9</button>
+        </div>
+        <div class="numpad-row">
+          <button class="np-btn" data-key="4" type="button">4</button>
+          <button class="np-btn" data-key="5" type="button">5</button>
+          <button class="np-btn" data-key="6" type="button">6</button>
+        </div>
+        <div class="numpad-row">
+          <button class="np-btn" data-key="1" type="button">1</button>
+          <button class="np-btn" data-key="2" type="button">2</button>
+          <button class="np-btn" data-key="3" type="button">3</button>
+        </div>
+        <div class="numpad-row">
+          <button class="np-btn btn-dot"  data-key="." type="button">.</button>
+          <button class="np-btn"          data-key="0" type="button">0</button>
+          <button class="np-btn btn-back" data-key="back" type="button">⌫</button>
+        </div>
+      </div>
+      <button class="add-btn" id="add-btn" type="button">+ AJOUTER</button>
+    </div>
+
+    <!-- Right column: display + stats -->
+    <div class="right-col">
+      <div class="display">
+        <div class="display-label">Note en cours</div>
+        <div class="display-value" id="display-value">—</div>
+        <div class="display-denom">/20</div>
+      </div>
+
+      <div id="stats-area">
+        <div class="stats-placeholder" id="stats-placeholder">
+          Tapez une note et appuyez<br>sur + Ajouter
+        </div>
+        <div class="hidden" id="stats-cards">
+          <div class="stats-row" style="margin-bottom:8px">
+            <div class="stat-card">
+              <span class="stat-icon">⌀</span>
+              <span class="stat-val" id="s-avg" style="color:var(--accent)">—</span>
+              <span class="stat-lbl">Moyenne</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">◆</span>
+              <span class="stat-val" id="s-med" style="color:var(--mid)">—</span>
+              <span class="stat-lbl">Médiane</span>
+            </div>
+          </div>
+          <div class="stats-row">
+            <div class="stat-card">
+              <span class="stat-icon">▲</span>
+              <span class="stat-val" id="s-max" style="color:var(--good)">—</span>
+              <span class="stat-lbl">Meilleure</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">▼</span>
+              <span class="stat-val" id="s-min" style="color:var(--bad)">—</span>
+              <span class="stat-lbl">Pire</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">✓</span>
+              <span class="stat-val" id="s-pass" style="color:var(--purple)">—</span>
+              <span class="stat-lbl">≥ 10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Distribution -->
+  <div class="distrib-section hidden" id="distrib-section">
+    <div class="distrib-label">Distribution</div>
+    <div class="distrib-bar" id="distrib-bar"></div>
+    <div class="distrib-scale"><span>0</span><span>10</span><span>20</span></div>
+  </div>
+
+  <!-- Notes list -->
+  <div class="notes-panel hidden" id="notes-panel">
+    <div class="notes-header">
+      <span class="notes-title">Liste des notes</span>
+      <button class="clear-btn" id="clear-btn" type="button">TOUT EFFACER</button>
+    </div>
+    <div class="notes-list" id="notes-list"></div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── State ── */
+  let notes = [];       // array of numbers
+  let npInput = '';     // current numpad buffer
+  let editIdx = -1;     // index being edited (-1 = none)
+
+  /* ── DOM refs ── */
+  const $ = id => document.getElementById(id);
+  const displayEl   = $('display-value');
+  const addBtn      = $('add-btn');
+  const kbInput     = $('kb-input');
+  const kbAddBtn    = $('kb-add-btn');
+  const countLabel  = $('count-label');
+  const statsCards  = $('stats-cards');
+  const statsHolder = $('stats-placeholder');
+  const distribSec  = $('distrib-section');
+  const distribBar  = $('distrib-bar');
+  const notesPanel  = $('notes-panel');
+  const notesList   = $('notes-list');
+  const clearBtn    = $('clear-btn');
+
+  /* ── Security: safe text setter (never innerHTML with user data) ── */
+  function setText(el, str) {
+    el.textContent = String(str);
+  }
+
+  /* ── Color logic ── */
+  function noteColor(v) {
+    if (v >= 14) return 'var(--good)';
+    if (v >= 10) return 'var(--mid)';
+    return 'var(--bad)';
+  }
+
+  /* ── Validate a single note value ── */
+  function isValidNote(v) {
+    return typeof v === 'number' && isFinite(v) && v >= 0 && v <= 20;
+  }
+
+  /* ── Stats calculation ── */
+  function calcStats(arr) {
+    if (!arr.length) return null;
+    const sorted = [...arr].sort((a, b) => a - b);
+    const avg = arr.reduce((a, b) => a + b, 0) / arr.length;
+    const mid = sorted.length % 2 === 0
+      ? (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2
+      : sorted[Math.floor(sorted.length / 2)];
+    return {
+      avg, min: sorted[0], max: sorted[sorted.length - 1],
+      median: mid, count: arr.length,
+      passing: arr.filter(n => n >= 10).length,
+    };
+  }
+
+  /* ── Update display ── */
+  function updateDisplay() {
+    if (npInput === '' || npInput === '.') {
+      setText(displayEl, '—');
+      displayEl.style.color = 'var(--muted)';
+    } else {
+      const v = parseFloat(npInput);
+      setText(displayEl, npInput);
+      displayEl.style.color = isValidNote(v) ? noteColor(v) : 'var(--bad)';
+    }
+    const active = npInput !== '' && npInput !== '.' && isValidNote(parseFloat(npInput));
+    addBtn.classList.toggle('active', active);
+  }
+
+  /* ── Render stats ── */
+  function renderStats() {
+    const s = calcStats(notes);
+    if (!s) {
+      statsCards.classList.add('hidden');
+      statsHolder.classList.remove('hidden');
+      countLabel.classList.add('hidden');
+    } else {
+      statsHolder.classList.add('hidden');
+      statsCards.classList.remove('hidden');
+      setText($('s-avg'),  s.avg.toFixed(2));
+      setText($('s-med'),  s.median.toFixed(2));
+      setText($('s-max'),  s.max.toFixed(2));
+      setText($('s-min'),  s.min.toFixed(2));
+      setText($('s-pass'), s.passing + '/' + s.count);
+      setText(countLabel, s.count + ' étudiant' + (s.count > 1 ? 's' : ''));
+      countLabel.classList.remove('hidden');
+    }
+  }
+
+  /* ── Render distribution bar ── */
+  function renderDistrib() {
+    if (!notes.length) {
+      distribSec.classList.add('hidden');
+      return;
+    }
+    distribSec.classList.remove('hidden');
+    const sorted = [...notes].sort((a, b) => a - b);
+    // Build fragment — no innerHTML with data
+    const frag = document.createDocumentFragment();
+    sorted.forEach(v => {
+      const seg = document.createElement('div');
+      seg.className = 'distrib-segment';
+      seg.style.background = noteColor(v);
+      frag.appendChild(seg);
+    });
+    distribBar.textContent = '';
+    distribBar.appendChild(frag);
+  }
+
+  /* ── Render notes chips ── */
+  function renderNotes() {
+    if (!notes.length) {
+      notesPanel.classList.add('hidden');
+      return;
+    }
+    notesPanel.classList.remove('hidden');
+    const frag = document.createDocumentFragment();
+    notes.forEach((v, i) => {
+      const chip = document.createElement('div');
+      chip.className = 'note-chip';
+      chip.style.borderLeft = '3px solid ' + noteColor(v);
+      chip.dataset.idx = i;
+
+      if (editIdx === i) {
+        // Edit mode
+        const inp = document.createElement('input');
+        inp.className = 'note-edit-input';
+        inp.type = 'text';
+        inp.inputMode = 'decimal';
+        inp.maxLength = 5;
+        inp.value = v.toString();
+        inp.autocomplete = 'off';
+        inp.addEventListener('keydown', e => {
+          if (e.key === 'Enter') confirmEdit(i, inp.value);
+          if (e.key === 'Escape') { editIdx = -1; renderAll(); }
+        });
+
+        const ok = document.createElement('button');
+        ok.className = 'note-confirm-btn';
+        ok.type = 'button';
+        ok.textContent = '✓';
+        ok.addEventListener('click', () => confirmEdit(i, inp.value));
+
+        chip.appendChild(inp);
+        chip.appendChild(ok);
+
+        // Autofocus after DOM insertion (next tick)
+        setTimeout(() => inp.focus(), 0);
+      } else {
+        // Normal mode
+        const val = document.createElement('span');
+        val.className = 'note-val';
+        val.style.color = noteColor(v);
+        setText(val, v.toFixed(1));
+
+        const denom = document.createElement('span');
+        denom.className = 'note-denom';
+        setText(denom, '/20');
+
+        const editB = document.createElement('button');
+        editB.className = 'note-edit-btn';
+        editB.type = 'button';
+        editB.textContent = '✎';
+        editB.setAttribute('aria-label', 'Modifier la note ' + v.toFixed(1));
+        editB.addEventListener('click', () => { editIdx = i; renderAll(); });
+
+        const delB = document.createElement('button');
+        delB.className = 'note-del-btn';
+        delB.type = 'button';
+        delB.textContent = '×';
+        delB.setAttribute('aria-label', 'Supprimer la note ' + v.toFixed(1));
+        delB.addEventListener('click', () => { notes.splice(i, 1); renderAll(); });
+
+        chip.appendChild(val);
+        chip.appendChild(denom);
+        chip.appendChild(editB);
+        chip.appendChild(delB);
+      }
+
+      frag.appendChild(chip);
+    });
+    notesList.textContent = '';
+    notesList.appendChild(frag);
+  }
+
+  function renderAll() {
+    renderStats();
+    renderDistrib();
+    renderNotes();
+    updateDisplay();
+  }
+
+  /* ── Confirm inline edit ── */
+  function confirmEdit(i, raw) {
+    // Sanitize: parse only as float
+    const v = parseFloat(raw);
+    if (isValidNote(v)) {
+      notes[i] = v;
+    }
+    editIdx = -1;
+    renderAll();
+  }
+
+  /* ── Commit numpad note ── */
+  function commitNote() {
+    const v = parseFloat(npInput);
+    if (!isValidNote(v)) return;
+    notes.push(v);
+    npInput = '';
+    renderAll();
+  }
+
+  /* ── Numpad key handler ── */
+  function handleNpKey(k) {
+    if (k === 'back') {
+      npInput = npInput.slice(0, -1);
+      updateDisplay();
+      return;
+    }
+    if (k === '.') {
+      if (npInput.includes('.')) return;
+    }
+    const next = npInput + k;
+    // Allow transitional states like "." or "0."
+    if (next === '.' || next === '0.') { npInput = next; updateDisplay(); return; }
+    const v = parseFloat(next);
+    if (!isNaN(v) && v <= 20) { npInput = next; updateDisplay(); }
+  }
+
+  /* ── Numpad buttons ── */
+  document.getElementById('numpad').addEventListener('pointerdown', e => {
+    const btn = e.target.closest('.np-btn');
+    if (!btn) return;
+    btn.classList.add('pressed');
+    handleNpKey(btn.dataset.key);
+  });
+  document.getElementById('numpad').addEventListener('pointerup', e => {
+    const btn = e.target.closest('.np-btn');
+    if (btn) btn.classList.remove('pressed');
+  });
+  document.getElementById('numpad').addEventListener('pointerleave', e => {
+    document.querySelectorAll('.np-btn.pressed').forEach(b => b.classList.remove('pressed'));
+  });
+
+  addBtn.addEventListener('click', commitNote);
+
+  /* ── Keyboard input (desktop) ── */
+
+  // Only allow digits, dot, space, comma, semicolon, backspace
+  const KB_ALLOWED = /^[\d.,; ]$/;
+
+  kbInput.addEventListener('keydown', e => {
+    // Block any key that isn't a safe character for note input
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      commitKbNotes();
+      return;
+    }
+  });
+
+  kbInput.addEventListener('input', () => {
+    // Sanitize: strip anything that isn't digits, dot, space, comma, semicolon
+    const raw = kbInput.value;
+    const safe = raw.replace(/[^\d.,; ]/g, '');
+    if (safe !== raw) kbInput.value = safe;
+    // Update add button state
+    const hasValid = safe.split(/[\s,;]+/).some(p => {
+      const v = parseFloat(p);
+      return isValidNote(v);
+    });
+    kbAddBtn.classList.toggle('active', hasValid);
+  });
+
+  function commitKbNotes() {
+    const raw = kbInput.value;
+    // Extra sanitization before processing
+    const safe = raw.replace(/[^\d.,; ]/g, '').slice(0, 200);
+    const parts = safe.split(/[\s,;]+/).map(s => s.trim()).filter(Boolean);
+    let added = 0;
+    parts.forEach(p => {
+      const v = parseFloat(p);
+      if (isValidNote(v)) { notes.push(v); added++; }
+    });
+    if (added > 0) {
+      kbInput.value = '';
+      kbAddBtn.classList.remove('active');
+      renderAll();
+    }
+  }
+
+  kbAddBtn.addEventListener('click', commitKbNotes);
+
+  /* ── Clear all ── */
+  clearBtn.addEventListener('click', () => {
+    notes = [];
+    editIdx = -1;
+    renderAll();
+  });
+
+  /* ── Physical keyboard → numpad (when no input focused) ── */
+  document.addEventListener('keydown', e => {
+    // Only when kb-input is NOT focused
+    if (document.activeElement === kbInput) return;
+    if (e.key >= '0' && e.key <= '9') { handleNpKey(e.key); return; }
+    if (e.key === '.' || e.key === ',') { handleNpKey('.'); return; }
+    if (e.key === 'Backspace') { handleNpKey('back'); return; }
+    if (e.key === 'Enter') { commitNote(); return; }
+  });
+
+  /* ── Keyboard shortcut hint label ── */
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch) {
+    const hint = document.createElement('div');
+    hint.style.cssText = 'color:var(--muted);font-size:11px;letter-spacing:1px;margin-bottom:8px;text-align:right;';
+    hint.textContent = '⌨  Entrée = ajouter · ⌫ = effacer dernier chiffre';
+    document.querySelector('.kb-row').after(hint);
+  }
+
+  /* ── Init ── */
+  renderAll();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="css/sunblind.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+	<link rel="stylesheet" href="plugin/chalkboard/style.css">
+
+	<link rel="stylesheet" href="plugin/reveal-pointer/pointer.css" />
+
+
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## 2 Communication et collaboration
+
+- *Savoir utiliser les outils numériques pour collaborer.*
+- &shy;<!-- .element: class="fragment" data-fragment-index="1" -->*Comprendre les enjeux de l’identité numérique.*
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Interagir à l’ère numérique
+
+-  Explosion des usages numériques pour communiquer, collaborer, entretenir des réseaux
+-  Nos premiers usages du téléphone : communiquer, échanger ; aujourd’hui, c’est aussi **travailler**, **apprendre**, **s’engager**
+-  Les outils évoluent très vite : connaître leurs avantages/limites devient essentiel
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Evolutions du web
+
+Le Web 1.0, Web 2.0 & Web 3.0. Bientôt un Web 4.0 ?
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Web 1.0 - sites vitrines
+
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 12.23.27.png" alt="" style="width: 550px; object-fit: fill">
+
+<small>Le site de [service-public.fr](https://www.service-public.fr/) le 3 décembre 2000. Source : Wayback Machine</small>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 12.25.51.png" alt="" style="width: 550px; object-fit: fill">
+
+<small>Yahoo! - un portail ambitieux (09/01/1997). Source : Wayback Machine</small>
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Web 2.0 L'ère des réseaux sociaux
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 12.29.12.png" alt="" style="width: 600px; object-fit: fill">
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 13.58.57.png" alt="" style="width: 600px; object-fit: fill">
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Le Web 3.0
+
+Décentralisation - confidentialité.
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Perspectives
+
+- Penseurs critiques du techno-solutionnisme : Evgeny Morozov, Shoshana Zuboff, etc.
+- Penseurs libertariens de la Silicon Valley : Peter Thiel, Curtis Yarvin, etc.
+- Penseurs de la singularité technologique : Ray Kurzweil, etc.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Interagir 
+
+1. Messagerie instantannée
+1. &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Visio-conférence
+1. &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Email
+1. &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Un risque : le phishing !
+
+<img src="https://www.stockvault.net/data/2016/06/20/202556/preview16.jpg" alt="fishing|400" style="width: 400px; object-fit: fill" class="fragment" data-fragment-index="5">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Messageries instantanées
+
+-  Outils au cœur du travail collaboratif moderne
+-  Favorisent le partage rapide et la coordination
+
+<img src="x/Images/3658120.jpg" alt="" style="width: 500px; object-fit: fill">
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemples d’outils
+
+-  **Slack** : équipes pro, projets
+-  **Microsoft Teams** : intégration complète entreprise/écoles
+-  **Discord** : communautés, projets étudiants, associations
+-  **Mattermost** : alternative open source, respect des données
+-  **Messenger** : usage amical ou informel
+-  **WhatsApp** (groupes de travail, espaces fermés)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Fonctionnalités-clés
+
+-  **Canaux / salons** : thèmes, projets, équipes séparés
+-  **Statut en ligne** : visible/occupé/absent, respect des horaires
+-  **Archivage rapide** des conversations clés 
+-  **Emojis** : dynamique, mais à doser dans un cadre professionnel
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Recommandations
+
+- Concision 
+- Emojis et gif avec modération
+- Conservation & archivage des échanges utiles
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+[Licencié pour avoir envoyé un gif d'Homer Simpson !](https://www.20minutes.fr/societe/4127882-20241206-oise-licencie-gif-homer-simpson-salarie-saisit-prud-hommes)
+
+<img src="https://media1.tenor.com/m/O2RBK9klEMYAAAAd/homer-simpson-homer.gif" alt="gif homer" style="object-fit: scale-down" class="fragment" data-fragment-index="1">
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Visio-conférence
+
+-  Outils principaux : Zoom, Teams, Google Meet, BigBlueButton, Jitsi, Webex…
+-  Croissance intense de l’usage avec le télétravail et les classes à distance
+
+<img src="x/Images/2149175669.jpg" alt="" style="width: 500px; object-fit: fill">
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Organiser une réunion efficace
+
+<small>(Valable aussi IRL)</small>
+
+1. Définir l’objectif et l’ordre du jour
+1. &shy;<!-- .element: class="fragment" data-fragment-index="1" -->N’inviter que les personnes essentielles
+1. &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Vérifier la disponibilité des participants
+1. &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Maîtriser les réglages de confidentialité
+1. &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Préparer le matériel : endroit calme, connexion stable, tenue correcte
+1. &shy;<!-- .element: class="fragment" data-fragment-index="5" -->Lister les présents, désigner un secrétaire pour le compte-rendu
+1. &shy;<!-- .element: class="fragment" data-fragment-index="6" -->Utiliser le micro avec discipline (on coupe si on ne parle pas)
+1. &shy;<!-- .element: class="fragment" data-fragment-index="7" -->Désigner un animateur qui rythme la séance
+1. &shy;<!-- .element: class="fragment" data-fragment-index="8" -->Savoir conclure à l’heure
+10. Éviter le multitâche (soyez présent !) <!-- .element: class="fragment" data-fragment-index="10" -->
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<video controls><source src="x/Images/embarassing zoom moments.mp4" type="video/mp4"></video>
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### E-mail
+
+-  Outil central en entreprises et administrations
+-  Adresse e-mail indispensable pour toute inscription ou communication sérieuse
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Fonctionnement de l’e-mail
+
+-  **Envoi** via SMTP (*Simple Mail Transfer Protocol*) 
+-  **Réception** via IMAP ou POP
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### les différents clients
+
+-  Clients « webmail » (en ligne) : Gmail, Outlook…
+-  Clients « desktop » (installés) : Thunderbird, Outlook Desktop
+- Clients « terminal »
+
+_Astuce : un client desktop permet de gérer plusieurs comptes, d’accéder hors ligne, de sauvegarder_
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="https://blog.thunderbird.net/files/2024/07/128-Light@2x-1-e1720641205908.png" alt="" style="object-fit: scale-down">
+
+<small>Thunderbird.<br> Source : [blog de Thunderbird](https://blog.thunderbird.net/2024/07/welcome-to-thunderbird-128-nebula/)</small>
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Configuration d'un client
+
+- Déterminer les serveurs SMTP & IMAP/POP
+- Renseigner ses informations d'authentification
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Rédiger un e-mail pro
+
+1. Objet clair et précis
+1. &shy;<!-- .element: class="fragment" data-fragment-index="1" -->Formule d’appel adaptée (« Bonjour, » « Monsieur, » etc.)
+1. &shy;<!-- .element: class="fragment" data-fragment-index="2" -->Corps du texte structuré : intro, contexte, demande, formule de politesse
+1. &shy;<!-- .element: class="fragment" data-fragment-index="3" -->Signature complète (Nom, fonction, contact)
+1. &shy;<!-- .element: class="fragment" data-fragment-index="4" -->Pièces jointes : privilégier le .pdf, nommage clair, taille raisonnable
+1. &shy;<!-- .element: class="fragment" data-fragment-index="5" -->N’envoyez pas tout à tout le monde (attention au « répondre à tous »)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Pièces-jointes
+
+- **Formats recommandés** : PDF pour la stabilité / docx pour l'édition. 
+- **Vérifier la taille du fichier** : passer par un service de transfert de fichiers si trop lourd ;
+- **Sécurité** : attention aux virus / liens malveillants
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Sécurité & éco-gestes
+
+-  **Vérifier l’adresse de l’expéditeur** et les liens : attention au phishing/hameçonnage !
+-  Supprimer les vieux mails inutiles (limite l’encombrement et la pollution numérique à long terme)
+-  N’ouvrez jamais de pièce jointe suspecte ; privilégiez l’utilisation de services de paiement sécurisés (Paypal, Lydia…)
+
+[Bon pote : Faut-il supprimer ses emails pour l’environnement ?](https://bonpote.com/environnement-faut-il-supprimer-ses-emails/)
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Phishing / hameçonnage
+
+-  *But : voler des données personnelles ou pro via des e-mails ou faux sites*
+-  Vérifier systématiquement l’origine d’un message
+-  Ne jamais cliquer sur les liens suspects
+-  Attention : existe aussi via SMS, appels, petites annonces
+
+_En cas de doute, chercher le vrai site via Google, et comparez soigneusement_
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Un exemple
+
+<img src="https://www.phishing.org/hs-fs/hubfs/paypal_fake-notice.png?t=1490303051874&width=1280&name=paypal_fake-notice.png" alt="image|600" style="width: 600px; object-fit: fill">
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Partager & publier
+
+-  **Partager** : rendre accessible à un groupe (lien, document collaboratif…)
+-  **Publier** : rendre public sur le web : posts, articles, vidéos…
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Enjeux
+
+- Visibilité ;
+- Droits individuels ;
+- Responsabilité numérique.
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Typologie des plateformes (selon Dominique Cardon)
+
+-  **Paravents** : Identité « civile » progressive, ex : apps de rencontre
+-  **Clair-obscur** : Groupes fermés, Facebook/WhatsApp/Snapchat
+-  **Phares** : Identité publique, agissante, ex : LinkedIn, Twitter, Instagram
+-  **Mondes virtuels** : second life, jeux en ligne immersifs
+
+→ Chaque univers implique des usages, des risques, des techniques particulières
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="x/Images/Pasted image 20250721130243.png" alt="" style="width: 800px; object-fit: fill">
+
+<small>Dominique Cardon, *Culture numérique*</small>
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Réseaux sociaux
+
+> Déf : Application web mettant en relation des personnes physiques/morales autour d’intérêts, pour entretenir un réseau, partager, promouvoir, organiser.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Utiliser un RS
+
+-  **Informer, se valoriser, promouvoir**
+-  **Participer à des débats, créer une communauté**
+-  **Travailler sa réputation, trouver un emploi, défendre des idées**
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemples de grands réseaux
+
+| Réseau       | Cible              | Usage principal                               | Type de contenu                         |
+|--------------|--------------------|-----------------------------------------------|-----------------------------------------|
+| LinkedIn     | Pro/Cadres         | Visibilité professionnelle, recrutement        | Articles, expériences, recommandations  |
+| Twitter (X)  | Médias, experts, personnalités publiques, mais aussi des trolls    | Veille, réactions, communication institutionnelle | Tweets, threads, débats                 |
+| Facebook     | Grand public       | Actu locale, événements, groupes, loisirs, associatifs     | Posts, vidéos, groupes                  |
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+|        |               |                          |                      |
+|--------------|--------------------|-----------------------------------------------|-----------------------------------------|
+| Instagram    | Jeunes/Visuel      | Communication créative, influenceurs          | Photos, stories, vidéos                  |
+| TikTok       | Ado/jeunes adultes | Créativité, viralité, trends                  | Vidéos courtes, challenges               |
+| YouTube      | Tous               | Formation, divertissement, démonstration      | Vidéos longues, tutoriels                |
+| Pinterest    | Créateurs          | Inspiration, idées, e-commerce                | Images, guides, infographies             |
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Bonnes pratiques
+
+-  Adapter son ton/format à la plateforme
+-  Distinguer usages privés/institutionnels
+-  Contrôler la confidentialité et le partage des données personnelles
+-  Prendre conscience des impacts psychologiques et sociaux
+</div></script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Les enjeux et limites des réseaux sociaux
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+-  **Usage commercial des données** (« Si c’est gratuit, c’est vous le produit »)
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+-  **Scroll infini et économie de l’attention** : tout est fait pour capter votre temps
+	- Notion de _[temps de cerveau disponible](https://fr.wikipedia.org/wiki/Temps_de_cerveau_humain_disponible)_ pour désigner cette ressource que les annonceurs publicitaires cherchent à mobiliser (expression formulée en 2004 par Patrick Le Lay, PDG TF1)
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+-  **Effets psychologiques** (cyberdépendance, cyberharcèlement, estime de soi, réputation)
+-  Pensez à paramétrer la **confidentialité**, à **limiter le temps d’usage**, à **réfléchir avant de poster**
+</div>
+
+</script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Plateformes de publication
+
+
+> Publier consiste avant tout à rendre un contenu public <!-- .element: class="fragment" data-fragment-index="1" -->
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Quelques plateformes de publication
+
+-  **Blogs** : [WordPress.com](https://wordpress.com/), [Tumblr](https://www.tumblr.com/), [Medium](https://medium.com/) – Idéal pour exposer des analyses longues ou se constituer un portfolio 
+-  **Wikis** : sites de documentation collaborative ([Wikipedia](https://www.wikipedia.org/), [Confluence](https://www.atlassian.com/software/confluence), Wikis internes dans les institutions, [Obsidian](https://obsidian.md/)...)  
+-  **Forums** : espaces de question/réponse/mise en commun ([Reddit](https://www.reddit.com/), [Quora](https://www.quora.com/), [StackExchange](https://stackexchange.com/), ...)  
+-  **CMS** : systèmes de gestion de contenu ([WordPress.org](https://wordpress.org/), [Drupal](https://www.drupal.org/), [Ghost](https://ghost.org/)...)
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+##### Blogs
+
+> Sites web qui contiennent des textes souvent sur un style informel selon un format de *journal* (diary), et présentées par ordre anté-chronologique (du plus récent au plus ancien).
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+##### Wikis
+
+> Application web permettant la création, la modification et l'illustration collaboratives de pages à l'intérieur d'un site web.
+
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png" alt="wikipedia|300" style="width: 300px; object-fit: fill">
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+###### Exemples
+
+- [Wikipedia](https://wikipedia.org)
+- Documentation logiciels ou institutionnels
+	- Ex. la documentation pour le logiciel [Obsidian](https://help.obsidian.md/) 
+- Communautés : 
+	- Ex. [Fandom](https://www.fandom.com/) - avec des communautés autour d'œuvres de fiction (ex. [Harry Potter](https://harrypotter.fandom.com/), [Star Wars](https://starwars.fandom.com/)...), des jeux vidéos ([Animal Crossing](https://animalcrossing.fandom.com/), [Elder Scrolls](https://elderscrolls.fandom.com/), etc.)
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+##### Forums
+
+> Espace de discussion public (ou au moins ouvert à plusieurs participants).
+</div>
+
+</script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 15.47.58.png" alt="" style="object-fit: scale-down">
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 15.50.07.png" alt="" style="object-fit: scale-down">
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Publier : conseils
+
+1. Un **contenu publié engage la responsabilité de l’auteur**
+2. Rédiger **clairement, sourcer, structurer**
+3. Respecter le **droit d’auteur et la protection des données** (photos, citations)
+4. **Gérer et valoriser la réputation en ligne**
+5. **Réagir de façon constructive** : répondre à la critique, argumenter calmement
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Mesure d'audience
+
+-  **Objectif** : optimiser le contenu, améliorer l’expérience utilisateur, affiner la stratégie commerciale ou éditoriale.
+-  La collecte et l’analyse de données sur le comportement des visiteurs d’un site internet ou d’une plateforme.
+-  Elle permet de comprendre **qui**, **quand**, **comment** les utilisateurs interagissent avec un contenu.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Les principaux outils et indicateurs
+
+| Outil             | Indicateurs clés                              | Description                                    |
+|-------------------|----------------------------------------------|------------------------------------------------|
+| [Google Analytics](https://tagmanager.google.com/)  | Sessions, Utilisateurs, Pages vues, Taux de rebond | Analyse précise du trafic et du comportement  |
+| [Matomo](https://fr.matomo.org/) (ex-Piwik)| Visiteurs, Conversion, Temps passé          | Solution open-source, respect de la vie privée |
+| Les métriques des RS | Impressions, Engagements, Partages | Sur réseaux sociaux (Facebook Insights, Twitter Analytics) |
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+**En résumé**, la mesure d’audience ne se limite pas à une simple collecte de chiffres, mais demande une lecture critique pour ajuster sa stratégie. Elle est indispensable pour :
+
+- Vérifier l’efficacité d’une campagne ou d’un contenu.
+- Identifier les profils et préférences de ses publics.
+- Mieux se positionner face à la concurrence.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 16.15.06.png" alt="" style="object-fit: scale-down">
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Collaborer en ligne
+
+- **Travailler ensemble à distance** : partager, co-rédiger, organiser, décider  
+- Plateformes **collaboratives**, **éditeurs partagés**, **outils de gestion de projet**
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Notions
+
+-  **Partage de documents** (en temps réel)
+-  **Communication synchrone** (chat, visio) ou **asynchrone** (email, commentaires)
+-  **Gestion collective** des tâches, suivi des modifications
+-  **Co-rédaction, gestion des versions**, commentaires
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Exemples d’outils
+
+| Outil                          | Fonction                          | Points forts                        |
+|------------------------------- |-----------------------------------|-------------------------------------|
+| **Google Docs/Sheets/Slides**  | Bureautique collaborative         | Simplicité, édition simultanée      |
+| **Microsoft 365**     | Idem, mais écosystème MS          | Outlook/Teams intégrés, pro         |
+| **Framapad/CryptPad**          | Respect vie privée        | Pas d’inscription, open-source      |
+| **Notion, Trello, Asana, ClickUp** | Gestion de projet / collaboration | Tableaux Kanban, todo, docs         |
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Fonctionnalités clés
+
+-  Historique des modifications, versioning
+-  Assignation de droits (lecture, commentaire, édition)
+-  Intégration avec d’autres outils (agenda, notifications...)
+</div>
+
+</script></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+##### Versionning
+
+- Eviter l'accumulation de versions partielles
+- Plus grande traçabilité des changements (restauration plus précise)
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+- Aujourd'hui, intégré dans la plupart des logiciels
+- Outil très populaire : **git**.
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+###### Git
+
+- Permet de suivre les différentes versions de fichiers ;
+- Permet de créer des branches de version 
+- Très utilisé dans le développement informatique (v. *GitHub*, *GitLab*...)
+
+<img src="https://cirst.uqam.ca/wp-content/uploads/2023/09/git.png" alt="git|600" style="width: 600px; object-fit: fill">
+</div></script></section></section><section ><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+##### Gestion des droits
+
+- Attribution aux membres d'une équipe des droits nécessaires et suffisants pour accomplir leurs missions
+- Protéger les fichiers contre des accès & des modifications non souhaitées
+</div></script></section><section data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+###### exemple : Dropbox
+
+<split even gap="1">
+<img src="x/Images/Capture d’écran 2025-09-11 à 16.43.36.png" alt="" style="width: 600px; object-fit: fill">
+
+<img src="x/Images/Capture d’écran 2025-09-11 à 16.44.20.png" alt="" style="width: 200px; object-fit: fill">
+
+</split>
+</div></script></section></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Enjeux de la collaboration numérique
+
+-  **Efficacité** : plus besoin d’envoyer chaque fichier, on travaille à plusieurs 
+-  **Traçabilité** : chaque modification enregistrée, connaissance de qui fait quoi
+-  **Valorisation des compétences transversales** : organisation, communication, esprit d'équipe
+-  **Accessibilité** : outils gratuits ou libres, inclusifs (handicap, géographie…)
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## S'insérer dans le monde numérique
+
+Question : *qu'est-ce que cela implique pour vous ?*
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Les actions en ligne
+
+- S'inscrire sur des plateformes - création d'un profil, participation aux échanges ;
+- Suivre des formations : MOOCs, tutos, webinaires, YouTube ;
+- Achats en ligne 
+- Consommation de contenu
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Maîtriser les stratégies et enjeux de la présence en ligne
+
+- Devenir acteur de sa vie numérique ;
+- Gérer sa réputation en ligne, exercer ses droits ;
+- Comprendre les mécaniques : 
+	- algorithmes et IA 
+	- influences des RS sur notre psychologie et nos liens sociaux
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Identité numérique & e-réputation
+
+-  Tout usage du numérique laisse une trace visible ou invisible
+-  **Traces numériques** : Réseaux, forums, blogs
+-  **E-réputation** : Image renvoyée par vos traces en ligne (et récupérée par… Google !)
+	- Outils d'**[OSINT](https://osintframework.com/)** aujourd'hui sont très performants et permettent de récupérer des données dont vous ne soupçonnez sans doute pas l'existence ;
+-  **Identité numérique** : Construction active, notamment pour la vie pro (LinkedIn, portfolio...)
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+On peut représenter l'identité sous trois dimensions :
+- l’identité **déclarative**, renseignée directement par l’utilisateur ;
+- l’identité **agissante**, renseignée indirectement par ses activités ;
+- l’identité **calculée**, produite d’un traitement de l’identité agissante par le système.
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+#### Un point sur les traces involontaires
+
+- Pour **éviter le traçage "involontaire"** (cookies, analytiques, etc.)
+	- *PiHole* - un serveur DNS à installer sur un raspberry pi à la maison qui bloque publicités, traceurs, etc ;
+	- Utiliser des navigateurs protecteurs de la vie privée : Firefox, Brave, etc. et utiliser des extensions qui bloquent les traceurs (Ghosty, PrivacyBadger, etc.)
+- La **navigation privée** ne vous rend pas anonyme !
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Risques et dynamiques associés 
+
+- Le **Bad Buzz** 
+- L'effet [**Streisand**](https://fr.wikipedia.org/wiki/Effet_Streisand)
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Points d’attention
+
+-  Surveillez ce qui existe sur vous (recherche Google, paramétrage RS)
+-  Ne relayez jamais d’idée/d’image privée sans consentement
+-  Un document/photo « partagé » est, potentiellement, public et permanent
+-  Soignez vos photos, bio, posts : tout peut être trouvé par un employeur ou une école
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+### Exercice 
+
+- Faites une recherche de votre nom sur Google. Êtes-vous étonnés de ce qu'on trouve à votre sujet ? Que pourriez-vous faire pour améliorer les résultats ?
+</div></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="drop" -->
+<div class="" style="position: absolute; left: 0px; top: 0px; height: 500px; width: 960px; min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center" absolute="true">
+
+## Ressources utiles
+
+-  [Comment organiser une réunion Zoom](https://www.youtube.com/watch?v=iwSo4GlFBck)
+-  [Article Bon Pote : e-mails et environnement](https://bonpote.com/environnement-faut-il-supprimer-ses-emails/)
+-  [Conseils phishing](https://www.cybermalveillance.gouv.fr/)
+-  [Scroll infini, économie de l’attention](https://www.thetimes.com/business-money/technology/article/i-m-so-sorry-says-inventor-of-endless-online-scrolling-9lrv59mdk)
+-  [Guide des réseaux sociaux](https://www.education.gouv.fr/les-reseaux-sociaux-enseignants-et-eleves-quels-enjeux-quels-risques-304596)
+</div></script></section></div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/chalkboard/plugin.js"></script>
+	<script src="plugin/reveal-pointer/pointer.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+	var isLight = isLight(bgColor);
+
+	if(isLight){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+	      RevealPointer,
+		  RevealChalkboard, 
+        ],
+
+
+    	allottedTime: 120 * 1000,
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+		markdown: {
+		  gfm: true,
+		  mangle: true,
+		  pedantic: false,
+		  smartLists: false,
+		  smartypants: false,
+		},
+
+		mermaid: {
+			theme: isLight ? 'default' : 'dark',
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+				{ icon: '<i class="fa fa-pen-square"></i>',
+				title: 'Toggle chalkboard (B)',
+				action: 'RevealChalkboard.toggleChalkboard();'
+				},
+				{ icon: '<i class="fa fa-pen"></i>',
+				title: 'Toggle notes canvas (C)',
+				action: 'RevealChalkboard.toggleNotesCanvas();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":960,"height":"500","margin":0.04,"controls":true,"progress":true,"slideNumber":true,"navigationMode":"linear","transition":"slide","transitionSpeed":"slow"}, queryOptions);
+    </script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+
+  <!-- created with Advanced Slides -->
+</html>

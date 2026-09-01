@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saisie des notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root {
+    --bg:       #f7f6f2;
+    --surface:  #ffffff;
+    --border:   #e2e0d8;
+    --text:     #1a1916;
+    --muted:    #888680;
+    --accent:   #2d5a3d;
+    --accent-l: #e8f0eb;
+    --danger:   #b94040;
+    --danger-l: #faeaea;
+    --warn:     #9a6b1a;
+    --warn-l:   #fdf3e0;
+    --mono:     'DM Mono', monospace;
+    --sans:     'DM Sans', sans-serif;
+    --radius:   6px;
+    --radius-lg:10px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2.5rem 1.5rem;
+  }
+  /* ── Layout ── */
+  .page { max-width: 780px; margin: 0 auto; }
+  header { margin-bottom: 2.5rem; }
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  header p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── Tabs ── */
+  .tabs { display: flex; gap: 2px; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .tab {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 400;
+    padding: 7px 16px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    color: var(--muted);
+    margin-bottom: -1px;
+    transition: color .15s, border-color .15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── Stats bar ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+  }
+  .stat .v { font-family: var(--mono); font-size: 1.35rem; font-weight: 500; }
+  .stat .l { font-size: 0.72rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .04em; }
+
+  /* ── Entry form ── */
+  .entry-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 0.75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .field-nom { flex: 1; min-width: 200px; position: relative; }
+  .field-note { width: 100px; }
+
+  input[type=text], input[type=number] {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    padding: 7px 11px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    width: 100%;
+    transition: border-color .15s;
+  }
+  input[type=text]:focus, input[type=number]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45,90,61,.1);
+  }
+
+  /* ── Autocomplete ── */
+  .ac-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0; right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 200;
+    display: none;
+  }
+  .ac-list div {
+    padding: 8px 12px;
+    font-size: 0.87rem;
+    cursor: pointer;
+    transition: background .1s;
+  }
+  .ac-list div:hover, .ac-list div.hi { background: var(--accent-l); }
+
+  /* ── Buttons ── */
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.87rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .12s, border-color .12s;
+    height: 36px;
+  }
+  .btn:hover { background: var(--bg); border-color: #c8c6be; }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { background: #245032; border-color: #245032; }
+  .btn.danger { color: var(--danger); }
+  .btn.danger:hover { background: var(--danger-l); border-color: #e0b0b0; }
+  .btn.sm { font-size: 0.78rem; padding: 5px 12px; height: 28px; }
+
+  /* ── Toast ── */
+  .toast {
+    font-size: 0.82rem;
+    padding: 7px 13px;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    display: none;
+    border: 1px solid transparent;
+  }
+  .toast.ok   { display:block; background: var(--accent-l); color: var(--accent); border-color: #bdd4c5; }
+  .toast.err  { display:block; background: var(--danger-l); color: var(--danger); border-color: #e8b8b8; }
+  .toast.warn { display:block; background: var(--warn-l);   color: var(--warn);   border-color: #e5d0a0; }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+  thead th {
+    text-align: left;
+    padding: 6px 12px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(0,0,0,.018); }
+  .n-val { font-family: var(--mono); font-weight: 500; }
+
+  .badge {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+  .b-f  { background: var(--danger-l); color: var(--danger); border-color: #e8b8b8; }
+  .b-pa { background: #f2f1ed; color: #555; border-color: var(--border); }
+  .b-as { background: #e9f0fb; color: #2a5298; border-color: #c0d0f0; }
+  .b-bi { background: var(--accent-l); color: var(--accent); border-color: #bdd4c5; }
+  .b-tb { background: #f0eafb; color: #6a35b0; border-color: #d0b8f0; }
+
+  .del-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 0.75rem;
+    opacity: .5; transition: opacity .1s, color .1s;
+    padding: 2px 4px;
+  }
+  .del-btn:hover { opacity: 1; color: var(--danger); }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted);
+    font-size: 0.87rem;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  /* ── Roster panel ── */
+  .roster-tip {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: .75rem;
+    line-height: 1.6;
+  }
+  textarea {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    width: 100%;
+    min-height: 200px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+  }
+  textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,90,61,.1); }
+  .roster-actions { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+  .roster-count { font-size: 0.78rem; color: var(--muted); margin-left: auto; }
+
+  /* ── Export panel ── */
+  .export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+  .export-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.2rem 1.4rem;
+  }
+  .export-card h3 { font-size: 0.9rem; font-weight: 500; margin-bottom: 4px; }
+  .export-card p  { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+
+  /* ── Keyboard hint ── */
+  kbd {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+  }
+  .hint { font-size: 0.78rem; color: var(--muted); margin-top: .75rem; }
+
+  /* ── Footer bar ── */
+  .action-bar {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 540px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .export-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>Saisie des notes</h1>
+    <p>Outil de saisie rapide — export Numbers / Excel / Pages</p>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="saisie">Saisie</button>
+    <button class="tab" data-tab="liste">Liste étudiants</button>
+    <button class="tab" data-tab="export">Export</button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 1 — SAISIE
+  ════════════════════════════════════════════════ -->
+  <div class="panel active" id="tab-saisie">
+
+    <div class="stats">
+      <div class="stat"><div class="v" id="s-n">0</div><div class="l">Saisis</div></div>
+      <div class="stat"><div class="v" id="s-r">—</div><div class="l">Restants</div></div>
+      <div class="stat"><div class="v" id="s-moy">—</div><div class="l">Moyenne</div></div>
+      <div class="stat"><div class="v" id="s-mm">—</div><div class="l">Max / Min</div></div>
+    </div>
+
+    <div class="entry-row">
+      <div class="field field-nom">
+        <label for="nom-input">Nom</label>
+        <input type="text" id="nom-input" placeholder="Tapez pour chercher…" autocomplete="off" />
+        <div class="ac-list" id="ac-list"></div>
+      </div>
+      <div class="field field-note">
+        <label for="note-input">Note /20</label>
+        <input type="number" id="note-input" min="0" max="20" step="0.5" placeholder="ex. 13.5" />
+      </div>
+      <button class="btn primary" id="add-btn" style="margin-bottom:1px">Ajouter</button>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <div class="table-wrap">
+      <div id="empty" class="empty-state">Aucune note pour l'instant.<br>Remplissez le formulaire ci-dessus pour commencer.</div>
+      <table id="notes-table" style="display:none">
+        <thead>
+          <tr>
+            <th style="width:36px">#</th>
+            <th>Nom</th>
+            <th style="width:90px">Note</th>
+            <th style="width:120px">Mention</th>
+            <th style="width:36px"></th>
+          </tr>
+        </thead>
+        <tbody id="notes-body"></tbody>
+      </table>
+    </div>
+
+    <div class="hint">
+      <kbd>Tab</kbd> sélectionner dans la liste &nbsp;·&nbsp; <kbd>↑↓</kbd> naviguer &nbsp;·&nbsp; <kbd>Entrée</kbd> valider la note
+    </div>
+
+    <div class="action-bar">
+      <button class="btn sm" id="quick-export-xlsx">Exporter .xlsx</button>
+      <button class="btn sm" id="quick-copy-tsv">Copier tableau</button>
+      <button class="btn sm danger" id="clear-btn">Tout effacer</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 2 — LISTE ÉTUDIANTS
+  ════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-liste">
+    <p class="roster-tip">
+      Collez ici la liste de vos étudiants (un par ligne). Vous pouvez copier directement depuis Word, Excel, un email ou un ENT — le parseur ignore les colonnes supplémentaires et les lignes vides.
+    </p>
+    <textarea id="roster-ta" placeholder="Martin Dupont&#10;Sophie Lefebvre&#10;Ahmed Benali&#10;..."></textarea>
+    <div class="roster-actions">
+      <button class="btn primary sm" id="parse-btn">Charger la liste</button>
+      <button class="btn sm danger" id="clear-roster-btn">Vider</button>
+      <span class="roster-count" id="roster-count"></span>
+    </div>
+
+    <div id="toast2" class="toast" style="margin-top:.75rem"></div>
+
+    <div id="roster-preview" style="margin-top:1.2rem;display:none">
+      <table>
+        <thead><tr><th>#</th><th>Nom chargé</th><th>Statut</th></tr></thead>
+        <tbody id="roster-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TAB 3 — EXPORT
+  ════════════════════════════════════════════════ -->
+  <div class="panel" id="tab-export">
+
+    <div class="export-grid">
+      <div class="export-card">
+        <h3>Fichier .xlsx</h3>
+        <p>Ouvre directement dans Numbers, Excel ou LibreOffice. Contient les colonnes nom, note, mention et la moyenne.</p>
+        <button class="btn primary" id="exp-xlsx">Télécharger .xlsx</button>
+      </div>
+      <div class="export-card">
+        <h3>Copier le tableau</h3>
+        <p>Copie dans le presse-papier au format tabulé. Collez avec <kbd>⌘V</kbd> dans un tableau Pages ou Google Docs.</p>
+        <button class="btn" id="exp-tsv">Copier &amp; coller dans Pages</button>
+      </div>
+      <div class="export-card">
+        <h3>CSV (texte brut)</h3>
+        <p>Format universel, lisible par tous les tableurs. Encodage UTF-8 avec BOM pour éviter les problèmes d'accents.</p>
+        <button class="btn" id="exp-csv">Télécharger .csv</button>
+      </div>
+      <div class="export-card">
+        <h3>Résumé texte</h3>
+        <p>Copie un résumé lisible (effectif, moyenne, répartition par mention) à coller dans un email ou un document.</p>
+        <button class="btn" id="exp-summary">Copier le résumé</button>
+      </div>
+    </div>
+
+    <div id="toast3" class="toast"></div>
+  </div>
+
+</div><!-- .page -->
+
+<script>
+// ─────────────────────────────────────────────
+//  State
+// ─────────────────────────────────────────────
+let entries = [];  // { nom, note }
+let roster  = [];  // string[]
+
+// ─────────────────────────────────────────────
+//  Mentions
+// ─────────────────────────────────────────────
+const MENTIONS = [
+  { max: 7,  code: 'f',  label: 'Insuffisant' },
+  { max: 10, code: 'f',  label: 'Insuffisant' },
+  { max: 12, code: 'pa', label: 'Passable' },
+  { max: 14, code: 'as', label: 'Assez bien' },
+  { max: 16, code: 'bi', label: 'Bien' },
+  { max: 21, code: 'tb', label: 'Très bien' },
+];
+function getMention(n) { return MENTIONS.find(m => n < m.max) || MENTIONS.at(-1); }
+
+// ─────────────────────────────────────────────
+//  Toast helper
+// ─────────────────────────────────────────────
+function toast(id, txt, type) {
+  const el = document.getElementById(id);
+  el.textContent = txt;
+  el.className = 'toast ' + type;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.className = 'toast', 2500);
+}
+
+// ─────────────────────────────────────────────
+//  Tabs
+// ─────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ─────────────────────────────────────────────
+//  Stats
+// ─────────────────────────────────────────────
+function updateStats() {
+  const n = entries.length;
+  document.getElementById('s-n').textContent = n;
+  document.getElementById('s-r').textContent = roster.length > 0 ? Math.max(0, roster.length - n) : '—';
+  if (!n) {
+    document.getElementById('s-moy').textContent = '—';
+    document.getElementById('s-mm').textContent  = '—';
+    return;
+  }
+  const ns = entries.map(e => e.note);
+  const moy = ns.reduce((a,b) => a+b, 0) / n;
+  document.getElementById('s-moy').textContent = moy.toFixed(2);
+  document.getElementById('s-mm').textContent  = Math.max(...ns).toFixed(1) + ' / ' + Math.min(...ns).toFixed(1);
+}
+
+// ─────────────────────────────────────────────
+//  Render table
+// ─────────────────────────────────────────────
+function render() {
+  const tbody = document.getElementById('notes-body');
+  const table = document.getElementById('notes-table');
+  const empty = document.getElementById('empty');
+  tbody.innerHTML = '';
+  if (!entries.length) { table.style.display = 'none'; empty.style.display = 'block'; }
+  else {
+    table.style.display = ''; empty.style.display = 'none';
+    entries.forEach((e, i) => {
+      const m  = getMention(e.note);
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        `<td style="color:var(--muted)">${i+1}</td>` +
+        `<td>${e.nom}</td>` +
+        `<td><span class="n-val">${e.note.toFixed(1)}</span></td>` +
+        `<td><span class="badge b-${m.code}">${m.label}</span></td>` +
+        `<td><button class="del-btn" data-i="${i}" title="Supprimer">✕</button></td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  updateStats();
+}
+
+document.getElementById('notes-body').addEventListener('click', e => {
+  const btn = e.target.closest('.del-btn');
+  if (btn) { entries.splice(+btn.dataset.i, 1); render(); }
+});
+
+// ─────────────────────────────────────────────
+//  Add entry
+// ─────────────────────────────────────────────
+const nomInput  = document.getElementById('nom-input');
+const noteInput = document.getElementById('note-input');
+
+function addEntry() {
+  const nom  = nomInput.value.trim();
+  const note = parseFloat(noteInput.value);
+  if (!nom) { toast('toast','Entrez un nom.','err'); nomInput.focus(); return; }
+  if (isNaN(note) || note < 0 || note > 20) { toast('toast','Note entre 0 et 20.','err'); noteInput.focus(); return; }
+  if (entries.find(e => e.nom.toLowerCase() === nom.toLowerCase())) {
+    toast('toast', `${nom} est déjà dans la liste.`, 'warn'); return;
+  }
+  entries.push({ nom, note });
+  toast('toast', `✓  ${nom} — ${note}/20`, 'ok');
+  nomInput.value = ''; noteInput.value = '';
+  hideAc(); render(); nomInput.focus();
+}
+
+document.getElementById('add-btn').addEventListener('click', addEntry);
+noteInput.addEventListener('keydown', e => { if (e.key === 'Enter') addEntry(); });
+
+// ─────────────────────────────────────────────
+//  Autocomplete
+// ─────────────────────────────────────────────
+let acIdx = -1;
+const acEl = document.getElementById('ac-list');
+
+function getMatches() {
+  const q = nomInput.value.trim().toLowerCase();
+  if (!q || !roster.length) return [];
+  const used = new Set(entries.map(e => e.nom.toLowerCase()));
+  return roster.filter(r => r.toLowerCase().includes(q) && !used.has(r.toLowerCase()));
+}
+
+function showAc(items) {
+  if (!items.length) { hideAc(); return; }
+  acEl.innerHTML = '';
+  items.slice(0, 10).forEach((item, i) => {
+    const d = document.createElement('div');
+    d.textContent = item;
+    d.addEventListener('mousedown', () => { nomInput.value = item; hideAc(); noteInput.focus(); });
+    acEl.appendChild(d);
+  });
+  acIdx = -1;
+  acEl.style.display = 'block';
+}
+
+function hideAc() { acEl.style.display = 'none'; acIdx = -1; }
+
+nomInput.addEventListener('input', () => showAc(getMatches()));
+nomInput.addEventListener('keydown', e => {
+  const items = acEl.querySelectorAll('div');
+  if (e.key === 'ArrowDown') {
+    acIdx = Math.min(acIdx+1, items.length-1);
+    items.forEach((d,i) => d.classList.toggle('hi', i===acIdx));
+    e.preventDefault();
+  } else if (e.key === 'ArrowUp') {
+    acIdx = Math.max(acIdx-1, 0);
+    items.forEach((d,i) => d.classList.toggle('hi', i===acIdx));
+    e.preventDefault();
+  } else if (e.key === 'Tab' || e.key === 'Enter') {
+    if (acIdx >= 0 && items[acIdx]) {
+      nomInput.value = items[acIdx].textContent;
+      hideAc(); noteInput.focus(); e.preventDefault();
+    } else { hideAc(); }
+  } else if (e.key === 'Escape') hideAc();
+});
+nomInput.addEventListener('blur', () => setTimeout(hideAc, 160));
+
+// ─────────────────────────────────────────────
+//  Roster — parseur copier-coller
+// ─────────────────────────────────────────────
+function parseRoster(raw) {
+  return raw
+    .split(/\r?\n/)
+    .map(l => {
+      // Prend la première colonne (séparateurs , ; | ou tab)
+      const col = l.split(/[,;\t|]/)[0].trim();
+      // Retire les numéros de début de ligne (ex: "1. " ou "1) ")
+      return col.replace(/^\d+[\.\)]\s*/, '').trim();
+    })
+    .filter(s => s.length > 1);
+}
+
+document.getElementById('parse-btn').addEventListener('click', () => {
+  const raw = document.getElementById('roster-ta').value;
+  const parsed = parseRoster(raw);
+  if (!parsed.length) { toast('toast2','Aucun nom trouvé dans la liste.','err'); return; }
+  roster = parsed;
+  renderRoster();
+  toast('toast2', `${roster.length} étudiant(s) chargé(s) avec succès.`, 'ok');
+  updateStats();
+});
+
+document.getElementById('clear-roster-btn').addEventListener('click', () => {
+  roster = [];
+  document.getElementById('roster-ta').value = '';
+  document.getElementById('roster-preview').style.display = 'none';
+  document.getElementById('roster-count').textContent = '';
+  updateStats();
+});
+
+function renderRoster() {
+  const used = new Set(entries.map(e => e.nom.toLowerCase()));
+  const tbody = document.getElementById('roster-body');
+  tbody.innerHTML = '';
+  roster.forEach((nom, i) => {
+    const saisi = used.has(nom.toLowerCase());
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      `<td style="color:var(--muted)">${i+1}</td>` +
+      `<td>${nom}</td>` +
+      `<td><span class="badge ${saisi ? 'b-bi' : 'b-pa'}">${saisi ? '✓ Saisi' : 'En attente'}</span></td>`;
+    tbody.appendChild(tr);
+  });
+  document.getElementById('roster-count').textContent = `${roster.length} nom(s)`;
+  document.getElementById('roster-preview').style.display = 'block';
+}
+
+// ─────────────────────────────────────────────
+//  Export helpers
+// ─────────────────────────────────────────────
+function buildXlsx() {
+  const rows = [['#','Nom','Note /20','Mention']];
+  entries.forEach((e,i) => rows.push([i+1, e.nom, e.note, getMention(e.note).label]));
+  if (entries.length) {
+    const moy = entries.reduce((a,b) => a+b.note, 0) / entries.length;
+    rows.push(['','Moyenne', parseFloat(moy.toFixed(2)), '']);
+  }
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws['!cols'] = [{wch:4},{wch:28},{wch:10},{wch:14}];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Notes');
+  XLSX.writeFile(wb, 'notes_etudiants.xlsx');
+}
+
+function buildTsv() {
+  const lines = ['#\tNom\tNote /20\tMention'];
+  entries.forEach((e,i) => lines.push(`${i+1}\t${e.nom}\t${e.note.toFixed(1)}\t${getMention(e.note).label}`));
+  if (entries.length) {
+    const moy = (entries.reduce((a,b) => a+b.note, 0) / entries.length).toFixed(2);
+    lines.push(`\tMoyenne\t${moy}\t`);
+  }
+  return lines.join('\n');
+}
+
+function buildCsv() {
+  const lines = ['\uFEFF#,Nom,Note /20,Mention'];
+  entries.forEach((e,i) => lines.push(`${i+1},"${e.nom}",${e.note},"${getMention(e.note).label}"`));
+  if (entries.length) {
+    const moy = (entries.reduce((a,b) => a+b.note, 0) / entries.length).toFixed(2);
+    lines.push(`,"Moyenne",${moy},`);
+  }
+  return lines.join('\n');
+}
+
+function buildSummary() {
+  if (!entries.length) return '';
+  const n   = entries.length;
+  const moy = (entries.reduce((a,b) => a+b.note, 0) / n).toFixed(2);
+  const max = Math.max(...entries.map(e => e.note));
+  const min = Math.min(...entries.map(e => e.note));
+  const dist = {};
+  entries.forEach(e => { const m = getMention(e.note).label; dist[m] = (dist[m]||0)+1; });
+  const distStr = Object.entries(dist).map(([k,v]) => `${k} : ${v}`).join(' · ');
+  return `Résultats — ${n} copies\nMoyenne : ${moy}/20   Max : ${max}   Min : ${min}\nRépartition : ${distStr}`;
+}
+
+function downloadText(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = filename; a.click();
+}
+
+function guard(toastId) {
+  if (!entries.length) { toast(toastId, 'Aucune note à exporter.', 'err'); return false; }
+  return true;
+}
+
+// Saisie tab quick actions
+document.getElementById('quick-export-xlsx').addEventListener('click', () => { if (guard('toast')) buildXlsx(); });
+document.getElementById('quick-copy-tsv').addEventListener('click', () => {
+  if (!guard('toast')) return;
+  navigator.clipboard.writeText(buildTsv())
+    .then(() => toast('toast','Tableau copié — ⌘V dans un tableau Pages.','ok'))
+    .catch(() => toast('toast','Copie non disponible dans ce contexte.','err'));
+});
+document.getElementById('clear-btn').addEventListener('click', () => {
+  if (!entries.length) return;
+  if (confirm('Effacer toutes les notes saisies ?')) { entries = []; render(); }
+});
+
+// Export tab
+document.getElementById('exp-xlsx').addEventListener('click', () => { if (guard('toast3')) buildXlsx(); });
+document.getElementById('exp-tsv').addEventListener('click', () => {
+  if (!guard('toast3')) return;
+  navigator.clipboard.writeText(buildTsv())
+    .then(() => toast('toast3','Tableau copié — ⌘V dans un tableau Pages.','ok'))
+    .catch(() => toast('toast3','Copie non disponible dans ce contexte.','err'));
+});
+document.getElementById('exp-csv').addEventListener('click', () => {
+  if (!guard('toast3')) return;
+  downloadText(buildCsv(), 'notes_etudiants.csv', 'text/csv;charset=utf-8;');
+  toast('toast3','Fichier CSV téléchargé.','ok');
+});
+document.getElementById('exp-summary').addEventListener('click', () => {
+  if (!guard('toast3')) return;
+  navigator.clipboard.writeText(buildSummary())
+    .then(() => toast('toast3','Résumé copié dans le presse-papier.','ok'))
+    .catch(() => toast('toast3','Copie non disponible dans ce contexte.','err'));
+});
+
+render();
+</script>
+</body>
+</html>
