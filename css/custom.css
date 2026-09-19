@@ -1,0 +1,19 @@
+hr {
+  margin: auto;
+  width: 10%;
+  border-style: dotted none none;
+  border-width: 7px;
+}
+
+.callout {
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #fffdcc;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.callout-warning {
+  background-color: #ff8989;
+  border-color: #ff7f6e;
+}
