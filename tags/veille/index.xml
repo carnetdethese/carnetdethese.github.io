@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Veille on Carnet de thèse</title>
+    <link>http://localhost:1313/tags/veille/</link>
+    <description>Recent content in Veille on Carnet de thèse</description>
+    <generator>Hugo</generator>
+    <language>fr</language>
+    <lastBuildDate>Tue, 01 Sep 2026 08:00:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/veille/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Un point sur la transposition de la directive NIS 2</title>
+      <link>http://localhost:1313/posts/2026/09/01/nis2-transpo/</link>
+      <pubDate>Tue, 01 Sep 2026 08:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/posts/2026/09/01/nis2-transpo/</guid>
+      <description>&lt;p&gt;Cela n&amp;rsquo;est un secret pour personne, les cyberattaques sont de plus en plus nombreuses et le développement des LLMs (et particulièrement ce qui est appelé l&amp;rsquo;« IA agentique ») rendent très accessibles les actes malveillants à l&amp;rsquo;encontre des structures non ou peu protégées contre ce type de menaces.&lt;/p&gt;&#xA;&lt;p&gt;Afin de répondre à ces enjeux croissants, la &lt;a href=&#34;https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=uriserv%3AOJ.L_.2022.333.01.0080.01.FRA&amp;amp;toc=OJ%3AL%3A2022%3A333%3ATOC&#34;&gt;directive européenne 2022/2555 &lt;em&gt;Network and Information Security 2&lt;/em&gt;&lt;/a&gt; (NIS 2), qui abroge et succède à la directive NIS 1 adoptée en 2016, opère, selon les termes du projet de loi de transposition, un « &lt;a href=&#34;https://www.senat.fr/rap/l24-393/l24-3931.html&#34;&gt;changement de paradigme&lt;/a&gt; ». Loin de ne viser qu&amp;rsquo;un groupe restreint d&amp;rsquo;entités « critiques », la directive vise à encadrer la résilience des infrastructures dites « importantes » ou « essentielles ».&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
